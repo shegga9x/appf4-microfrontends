@@ -1,11 +1,11 @@
 {
-  "name": "storefront",
+  "name": "gateway",
   "version": "0.0.0",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3000",
     "lint": "next lint",
     "check-types": "tsc --noEmit",
     "start": "next start"
@@ -15,10 +15,12 @@
     "@repo/ui": "*",
     "next": "^15.3.0",
     "react": "^18.3.1",
+    "@repo/next-scripts": "*",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.3.0",
+    "@repo/next-scripts": "*",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/node": "^22.15.3",
