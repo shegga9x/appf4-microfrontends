@@ -10,9 +10,8 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   reactStrictMode: true,
-  transpilePackages: ["@repo/ui", "@repo/zustand"],
+  // transpilePackages: ["@repo/ui", "@repo/zustand"],
   output: "standalone",
 
 };
-
 export default nextConfig;
