@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       // Rewrites for Multi-Zones
       {
         source: '/docs',
-        destination: `${NEXT_PUBLIC_DOCS_URL}`,
+        destination: `${NEXT_PUBLIC_DOCS_URL}/:path*`,
       },
       {
         source: '/docs/:path*',
@@ -41,7 +41,7 @@ const nextConfig: NextConfig = {
       // Rewrites for ShareSphere
       {
         source: '/post',
-        destination: `${NEXT_PUBLIC_POST_URL}`,
+        destination: `${NEXT_PUBLIC_POST_URL}/:path*`,
       },
       {
         source: '/post/:path*',

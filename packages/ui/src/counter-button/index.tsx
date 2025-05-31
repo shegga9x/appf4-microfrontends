@@ -1,9 +1,9 @@
-"use client";
+// "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 
 export function CounterButton() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   return (
     <div
@@ -13,6 +13,7 @@ export function CounterButton() {
         padding: "1.5rem",
         fontWeight: 500,
       }}
+      suppressHydrationWarning
     >
       <p style={{ margin: "0 0 1.5rem 0" }}>
         This component is from{" "}
@@ -22,15 +23,13 @@ export function CounterButton() {
             background: `rgba(0,0,0,0.1)`,
             borderRadius: "0.25rem",
           }}
+          suppressHydrationWarning
         >
           ui
         </code>
       </p>
       <div>
         <button
-          onClick={() => {
-            setCount((c) => c + 1);
-          }}
           style={{
             background: "black",
             color: "white",
@@ -41,8 +40,9 @@ export function CounterButton() {
             cursor: "pointer",
           }}
           type="button"
+          suppressHydrationWarning
         >
-          Count: {count}
+          Count: {}
         </button>
       </div>
     </div>

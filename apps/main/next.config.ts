@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // transpilePackages: ["@repo/ui", "@repo/zustand"],
   output: "standalone",
-
+  assetPrefix: '/post',
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/post/_next/:path+',
+          destination: '/_next/:path+',
+        },
+      ],
+    }
+  },
 };
 export default nextConfig;
