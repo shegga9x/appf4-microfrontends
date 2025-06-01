@@ -1,7 +1,7 @@
 // app/dashboard/page.tsx (or pages/dashboard.tsx, depending on your Next.js version)
 
 'use client'
-import { useRequireProfile } from "@repo/api-client";
+import { useRequireProfile } from "@repo/zustand";
 import { useRouter } from "next/navigation"; // Change this line
 
 // if using Next.js App Router

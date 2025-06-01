@@ -1,6 +1,7 @@
 
 import { create } from 'zustand';
 import { login as apiLogin, getUserInfo } from '@repo/api-client';
+import { useEffect } from 'react';
 
 interface AuthState {
     accessToken: string | null;
@@ -57,3 +58,23 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         });
     },
 }));
+
+
+
+// Provide a fallback value and ensure it's available on the client
+const LOGIN_URL = (typeof window !== 'undefined'
+    ? window.location.origin
+    : process.env.NEXT_PUBLIC_GATEWAY_URL) + '/login';
+
+export function useRequireProfile(router: any) {
+    const profile = useAuthStore((s) => s.profile);
+    const loading = useAuthStore((s) => s.loading);
+
+    useEffect(() => {
+        if (!loading && !profile) {
+            window.location.href = LOGIN_URL;
+        }
+    }, [loading, profile, router]);
+
+    return { profile, loading };
+}

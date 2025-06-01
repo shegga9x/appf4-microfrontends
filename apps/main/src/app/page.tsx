@@ -3,7 +3,7 @@
 // export const metadata = {
 //   title: "Store | Kitchen Sink",
 // };
-import { useRequireProfile } from "@repo/api-client";
+import { useRequireProfile } from "@repo/zustand";
 import { useRouter } from "next/navigation";
 import Store from "./store-client"; // rename your current file to store-client.tsx
 

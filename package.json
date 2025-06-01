@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "clean": "turbo run clean",
+    "clean": "rimraf node_modules */node_modules */*/node_modules dist */dist */*/dist .next */.next */*/.next .turbo */.turbo */*/.turbo",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
@@ -15,7 +15,9 @@
     "postcss-import": "^16.1.0",
     "postcss-preset-env": "^10.1.6",
     "prettier": "^3.5.3",
-    "turbo": "^2.5.3"
+    "turbo": "^2.5.3",
+    "bunchee": "^5.0.0",
+    "rimraf": "^6.0.1"
   },
   "engines": {
     "node": ">=18"

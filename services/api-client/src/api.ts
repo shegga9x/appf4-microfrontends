@@ -19,4 +19,3 @@ export * from './api/ms-feed-kafka-resource-api';
 export * from './api/ms-reel-kafka-resource-api';
 export * from './api/reel-resource-api';
 export * from './api/login';
-export * from './api/useRequireProfile';
