@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "clean": "rimraf node_modules */node_modules */*/node_modules dist */dist */*/dist .next */.next */*/.next .turbo */.turbo */*/.turbo",
+    "clean": "rimraf --glob \"node_modules/**\" \"dist/**\" \".next/**\" \".turbo/**\"",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
