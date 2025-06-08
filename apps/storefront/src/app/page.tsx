@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 export default function Store() {
-  log("Hey! This is the Store page.");
+  log("Hey! This is the Docs page.");
 
   return (
     <div className="container">

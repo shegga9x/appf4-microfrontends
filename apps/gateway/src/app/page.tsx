@@ -2,22 +2,39 @@
 
 'use client'
 import { useRequireProfile } from "@repo/zustand";
-import { useRouter } from "next/navigation"; // Change this line
-
-// if using Next.js App Router
-
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
   const router = useRouter();
   const { profile, loading } = useRequireProfile(router);
+
+  const docs = "/docs";
+  const post = "/post";
   if (loading || !profile) {
-    return <p>Loading...</p> // show spinner or skeleton while redirecting
+    return <p>Loading...</p>
   }
 
+
   return (
-    <div>
-      <h1>Welcome, {profile.name}!</h1>
-      <p>This is your protected dashboard.</p>
-    </div>
+    <>
+
+      <div className="dashboard-container">
+        <h1>Welcome, {profile.name}!</h1>
+        <p>This is your protected dashboard.</p>
+        <div className="navigation-buttons">
+          <a
+            href={docs}
+            className="nav-link main-link"
+          >
+            📝 docs
+          </a>
+          <a
+            href={post}
+            className="nav-link main-link"
+          >
+            📝 post
+          </a>
+        </div>
+      </div></>
   )
 }
