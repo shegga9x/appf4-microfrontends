@@ -18,7 +18,7 @@ class SharedCookieManager {
     // In production, use your main domain (e.g., '.yourdomain.com')
     // In development, use localhost
     this.domain = this.isProduction 
-      ? process.env.NEXT_PUBLIC_COOKIE_DOMAIN || '.yourdomain.com'
+      ? process.env.NEXT_PUBLIC_COOKIE_DOMAIN || '.appf4s.io.vn'
       : 'localhost';
   }
 
