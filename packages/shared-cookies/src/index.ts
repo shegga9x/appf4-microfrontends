@@ -18,8 +18,8 @@ class SharedCookieManager {
     // In production, use your main domain (e.g., '.yourdomain.com')
     // In development, use localhost
     this.domain = this.isProduction 
-      ? "https://appf4social.vercel.app"
-      : 'localhost';
+      ? 'https://appf4social.vercel.app'
+      : 'https://appf4social.vercel.app';
   }
 
   private getDefaultOptions(): CookieOptions {
