@@ -41,15 +41,15 @@ const nextConfig: NextConfig = {
       // Rewrites for ShareSphere
       {
         source: '/post',
-        destination: `https://appf4-main.vercel.app/:path*`,
+        destination: `https://main.appf4s.io.vn/:path*`,
       },
       {
         source: '/post/:path*',
-        destination: `https://appf4-main.vercel.app/post/:path*`,
+        destination: `https://main.appf4s.io.vn/post/:path*`,
       },
       {
         source: '/sharesphere-static/:path*',
-        destination: `https://appf4-main.vercel.app/sharesphere-static/:path*`,
+        destination: `https://main.appf4s.io.vn/sharesphere-static/:path*`,
       },
     ];
   },
