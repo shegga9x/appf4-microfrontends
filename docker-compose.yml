@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  storefront:
-    container_name: storefront
+  admin:
+    container_name: admin
     build:
       context: .
-      dockerfile: ./apps/storefront/Dockerfile
+      dockerfile: ./apps/admin/Dockerfile
     restart: always
     ports:
       - 3000:3000
