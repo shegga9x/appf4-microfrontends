@@ -41,15 +41,15 @@ const nextConfig: NextConfig = {
       // Rewrites for ShareSphere
       {
         source: '/post',
-        destination: `https://main.appf4s.io.vn/:path*`,
+        destination: `${NEXT_PUBLIC_POST_URL}`,
       },
       {
         source: '/post/:path*',
-        destination: `https://main.appf4s.io.vn/post/:path*`,
+        destination: `${NEXT_PUBLIC_POST_URL}/post/:path*`,
       },
       {
         source: '/sharesphere-static/:path*',
-        destination: `https://main.appf4s.io.vn/sharesphere-static/:path*`,
+        destination: `${NEXT_PUBLIC_POST_URL}/sharesphere-static/:path*`,
       },
     ];
   },
