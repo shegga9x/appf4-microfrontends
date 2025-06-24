@@ -1,37 +1,36 @@
-# FeedItemResourceApi
+# KeycloakUserResourceApi
 
 All URIs are relative to */services/msfeed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**createFeedItem**](#createfeeditem) | **POST** /api/feed-items | |
-|[**deleteFeedItem**](#deletefeeditem) | **DELETE** /api/feed-items/{id} | |
-|[**getAllFeedItems**](#getallfeeditems) | **GET** /api/feed-items | |
-|[**getFeedItem**](#getfeeditem) | **GET** /api/feed-items/{id} | |
-|[**partialUpdateFeedItem**](#partialupdatefeeditem) | **PATCH** /api/feed-items/{id} | |
-|[**searchFeedItems**](#searchfeeditems) | **GET** /api/feed-items/_search | |
-|[**updateFeedItem**](#updatefeeditem) | **PUT** /api/feed-items/{id} | |
+|[**createKeycloakUser**](#createkeycloakuser) | **POST** /api/keycloak-users | |
+|[**deleteKeycloakUser**](#deletekeycloakuser) | **DELETE** /api/keycloak-users/{id} | |
+|[**getAllKeycloakUsers**](#getallkeycloakusers) | **GET** /api/keycloak-users | |
+|[**getKeycloakUser**](#getkeycloakuser) | **GET** /api/keycloak-users/{id} | |
+|[**partialUpdateKeycloakUser**](#partialupdatekeycloakuser) | **PATCH** /api/keycloak-users/{id} | |
+|[**updateKeycloakUser**](#updatekeycloakuser) | **PUT** /api/keycloak-users/{id} | |
 
-# **createFeedItem**
-> FeedItemDTO createFeedItem(feedItemDTO)
+# **createKeycloakUser**
+> KeycloakUserDTO createKeycloakUser(keycloakUserDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    KeycloakUserResourceApi,
     Configuration,
-    FeedItemDTO
+    KeycloakUserDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new KeycloakUserResourceApi(configuration);
 
-let feedItemDTO: FeedItemDTO; //
+let keycloakUserDTO: KeycloakUserDTO; //
 
-const { status, data } = await apiInstance.createFeedItem(
-    feedItemDTO
+const { status, data } = await apiInstance.createKeycloakUser(
+    keycloakUserDTO
 );
 ```
 
@@ -39,12 +38,12 @@ const { status, data } = await apiInstance.createFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **keycloakUserDTO** | **KeycloakUserDTO**|  | |
 
 
 ### Return type
 
-**FeedItemDTO**
+**KeycloakUserDTO**
 
 ### Authorization
 
@@ -63,24 +62,24 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteFeedItem**
-> deleteFeedItem()
+# **deleteKeycloakUser**
+> deleteKeycloakUser()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    KeycloakUserResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new KeycloakUserResourceApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.deleteFeedItem(
+const { status, data } = await apiInstance.deleteKeycloakUser(
     id
 );
 ```
@@ -113,26 +112,26 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAllFeedItems**
-> Array<FeedItemDTO> getAllFeedItems()
+# **getAllKeycloakUsers**
+> Array<KeycloakUserDTO> getAllKeycloakUsers()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    KeycloakUserResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new KeycloakUserResourceApi(configuration);
 
 let page: number; //Zero-based page index (0..N) (optional) (default to 0)
 let size: number; //The size of the page to be returned (optional) (default to 20)
 let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.getAllFeedItems(
+const { status, data } = await apiInstance.getAllKeycloakUsers(
     page,
     size,
     sort
@@ -150,7 +149,7 @@ const { status, data } = await apiInstance.getAllFeedItems(
 
 ### Return type
 
-**Array<FeedItemDTO>**
+**Array<KeycloakUserDTO>**
 
 ### Authorization
 
@@ -169,24 +168,24 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getFeedItem**
-> FeedItemDTO getFeedItem()
+# **getKeycloakUser**
+> KeycloakUserDTO getKeycloakUser()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    KeycloakUserResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new KeycloakUserResourceApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.getFeedItem(
+const { status, data } = await apiInstance.getKeycloakUser(
     id
 );
 ```
@@ -200,7 +199,7 @@ const { status, data } = await apiInstance.getFeedItem(
 
 ### Return type
 
-**FeedItemDTO**
+**KeycloakUserDTO**
 
 ### Authorization
 
@@ -219,28 +218,28 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **partialUpdateFeedItem**
-> FeedItemDTO partialUpdateFeedItem(feedItemDTO)
+# **partialUpdateKeycloakUser**
+> KeycloakUserDTO partialUpdateKeycloakUser(keycloakUserDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    KeycloakUserResourceApi,
     Configuration,
-    FeedItemDTO
+    KeycloakUserDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new KeycloakUserResourceApi(configuration);
 
 let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let keycloakUserDTO: KeycloakUserDTO; //
 
-const { status, data } = await apiInstance.partialUpdateFeedItem(
+const { status, data } = await apiInstance.partialUpdateKeycloakUser(
     id,
-    feedItemDTO
+    keycloakUserDTO
 );
 ```
 
@@ -248,13 +247,13 @@ const { status, data } = await apiInstance.partialUpdateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **keycloakUserDTO** | **KeycloakUserDTO**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**KeycloakUserDTO**
 
 ### Authorization
 
@@ -273,87 +272,28 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **searchFeedItems**
-> Array<FeedItemDTO> searchFeedItems()
+# **updateKeycloakUser**
+> KeycloakUserDTO updateKeycloakUser(keycloakUserDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let query: string; // (default to undefined)
-let page: number; //Zero-based page index (0..N) (optional) (default to 0)
-let size: number; //The size of the page to be returned (optional) (default to 20)
-let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchFeedItems(
-    query,
-    page,
-    size,
-    sort
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **query** | [**string**] |  | defaults to undefined|
-| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
-| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
-| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
-
-
-### Return type
-
-**Array<FeedItemDTO>**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **updateFeedItem**
-> FeedItemDTO updateFeedItem(feedItemDTO)
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
+    KeycloakUserResourceApi,
     Configuration,
-    FeedItemDTO
+    KeycloakUserDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new KeycloakUserResourceApi(configuration);
 
 let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let keycloakUserDTO: KeycloakUserDTO; //
 
-const { status, data } = await apiInstance.updateFeedItem(
+const { status, data } = await apiInstance.updateKeycloakUser(
     id,
-    feedItemDTO
+    keycloakUserDTO
 );
 ```
 
@@ -361,13 +301,13 @@ const { status, data } = await apiInstance.updateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **keycloakUserDTO** | **KeycloakUserDTO**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**KeycloakUserDTO**
 
 ### Authorization
 

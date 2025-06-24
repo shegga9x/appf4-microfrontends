@@ -17,44 +17,32 @@
 /**
  * 
  * @export
- * @interface ReelDTO
+ * @interface ReelRequest
  */
-export interface ReelDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof ReelDTO
-     */
-    'version'?: number;
+export interface ReelRequest {
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof ReelRequest
      */
-    'id': string;
+    'eventName'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof ReelRequest
      */
-    'userId': string;
+    'userId'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof ReelRequest
      */
-    'title': string;
+    'title'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof ReelRequest
      */
-    'videoUrl': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReelDTO
-     */
-    'createdAt': string;
+    'videoUrl'?: string;
 }
 

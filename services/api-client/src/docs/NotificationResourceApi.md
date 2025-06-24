@@ -1,37 +1,36 @@
-# FeedItemResourceApi
+# NotificationResourceApi
 
 All URIs are relative to */services/msfeed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**createFeedItem**](#createfeeditem) | **POST** /api/feed-items | |
-|[**deleteFeedItem**](#deletefeeditem) | **DELETE** /api/feed-items/{id} | |
-|[**getAllFeedItems**](#getallfeeditems) | **GET** /api/feed-items | |
-|[**getFeedItem**](#getfeeditem) | **GET** /api/feed-items/{id} | |
-|[**partialUpdateFeedItem**](#partialupdatefeeditem) | **PATCH** /api/feed-items/{id} | |
-|[**searchFeedItems**](#searchfeeditems) | **GET** /api/feed-items/_search | |
-|[**updateFeedItem**](#updatefeeditem) | **PUT** /api/feed-items/{id} | |
+|[**createNotification**](#createnotification) | **POST** /api/notifications | |
+|[**deleteNotification**](#deletenotification) | **DELETE** /api/notifications/{id} | |
+|[**getAllNotifications**](#getallnotifications) | **GET** /api/notifications | |
+|[**getNotification**](#getnotification) | **GET** /api/notifications/{id} | |
+|[**partialUpdateNotification**](#partialupdatenotification) | **PATCH** /api/notifications/{id} | |
+|[**updateNotification**](#updatenotification) | **PUT** /api/notifications/{id} | |
 
-# **createFeedItem**
-> FeedItemDTO createFeedItem(feedItemDTO)
+# **createNotification**
+> NotificationDTO createNotification(notificationDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    NotificationResourceApi,
     Configuration,
-    FeedItemDTO
+    NotificationDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new NotificationResourceApi(configuration);
 
-let feedItemDTO: FeedItemDTO; //
+let notificationDTO: NotificationDTO; //
 
-const { status, data } = await apiInstance.createFeedItem(
-    feedItemDTO
+const { status, data } = await apiInstance.createNotification(
+    notificationDTO
 );
 ```
 
@@ -39,12 +38,12 @@ const { status, data } = await apiInstance.createFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **notificationDTO** | **NotificationDTO**|  | |
 
 
 ### Return type
 
-**FeedItemDTO**
+**NotificationDTO**
 
 ### Authorization
 
@@ -63,24 +62,24 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteFeedItem**
-> deleteFeedItem()
+# **deleteNotification**
+> deleteNotification()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    NotificationResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new NotificationResourceApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.deleteFeedItem(
+const { status, data } = await apiInstance.deleteNotification(
     id
 );
 ```
@@ -113,26 +112,26 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAllFeedItems**
-> Array<FeedItemDTO> getAllFeedItems()
+# **getAllNotifications**
+> Array<NotificationDTO> getAllNotifications()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    NotificationResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new NotificationResourceApi(configuration);
 
 let page: number; //Zero-based page index (0..N) (optional) (default to 0)
 let size: number; //The size of the page to be returned (optional) (default to 20)
 let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.getAllFeedItems(
+const { status, data } = await apiInstance.getAllNotifications(
     page,
     size,
     sort
@@ -150,7 +149,7 @@ const { status, data } = await apiInstance.getAllFeedItems(
 
 ### Return type
 
-**Array<FeedItemDTO>**
+**Array<NotificationDTO>**
 
 ### Authorization
 
@@ -169,24 +168,24 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getFeedItem**
-> FeedItemDTO getFeedItem()
+# **getNotification**
+> NotificationDTO getNotification()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    NotificationResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new NotificationResourceApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.getFeedItem(
+const { status, data } = await apiInstance.getNotification(
     id
 );
 ```
@@ -200,7 +199,7 @@ const { status, data } = await apiInstance.getFeedItem(
 
 ### Return type
 
-**FeedItemDTO**
+**NotificationDTO**
 
 ### Authorization
 
@@ -219,28 +218,28 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **partialUpdateFeedItem**
-> FeedItemDTO partialUpdateFeedItem(feedItemDTO)
+# **partialUpdateNotification**
+> NotificationDTO partialUpdateNotification(notificationDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    NotificationResourceApi,
     Configuration,
-    FeedItemDTO
+    NotificationDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new NotificationResourceApi(configuration);
 
 let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let notificationDTO: NotificationDTO; //
 
-const { status, data } = await apiInstance.partialUpdateFeedItem(
+const { status, data } = await apiInstance.partialUpdateNotification(
     id,
-    feedItemDTO
+    notificationDTO
 );
 ```
 
@@ -248,13 +247,13 @@ const { status, data } = await apiInstance.partialUpdateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **notificationDTO** | **NotificationDTO**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**NotificationDTO**
 
 ### Authorization
 
@@ -273,87 +272,28 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **searchFeedItems**
-> Array<FeedItemDTO> searchFeedItems()
+# **updateNotification**
+> NotificationDTO updateNotification(notificationDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let query: string; // (default to undefined)
-let page: number; //Zero-based page index (0..N) (optional) (default to 0)
-let size: number; //The size of the page to be returned (optional) (default to 20)
-let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchFeedItems(
-    query,
-    page,
-    size,
-    sort
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **query** | [**string**] |  | defaults to undefined|
-| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
-| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
-| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
-
-
-### Return type
-
-**Array<FeedItemDTO>**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **updateFeedItem**
-> FeedItemDTO updateFeedItem(feedItemDTO)
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
+    NotificationResourceApi,
     Configuration,
-    FeedItemDTO
+    NotificationDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new NotificationResourceApi(configuration);
 
 let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let notificationDTO: NotificationDTO; //
 
-const { status, data } = await apiInstance.updateFeedItem(
+const { status, data } = await apiInstance.updateNotification(
     id,
-    feedItemDTO
+    notificationDTO
 );
 ```
 
@@ -361,13 +301,13 @@ const { status, data } = await apiInstance.updateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **notificationDTO** | **NotificationDTO**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**NotificationDTO**
 
 ### Authorization
 

@@ -1,29 +1,29 @@
-# ReelDTO
+# UserDTO
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **number** |  | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
-**userId** | **string** |  | [default to undefined]
-**title** | **string** |  | [default to undefined]
-**videoUrl** | **string** |  | [default to undefined]
+**username** | **string** |  | [default to undefined]
+**email** | **string** |  | [default to undefined]
+**passwordHash** | **string** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
+**keycloakUserId** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { ReelDTO } from './api';
+import { UserDTO } from './api';
 
-const instance: ReelDTO = {
-    version,
+const instance: UserDTO = {
     id,
-    userId,
-    title,
-    videoUrl,
+    username,
+    email,
+    passwordHash,
     createdAt,
+    keycloakUserId,
 };
 ```
 

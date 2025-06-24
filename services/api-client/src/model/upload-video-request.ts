@@ -13,6 +13,18 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./model";
+
+/**
+ * 
+ * @export
+ * @interface UploadVideoRequest
+ */
+export interface UploadVideoRequest {
+    /**
+     * 
+     * @type {File}
+     * @memberof UploadVideoRequest
+     */
+    'file': File;
+}
+

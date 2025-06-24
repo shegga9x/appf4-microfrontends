@@ -17,44 +17,44 @@
 /**
  * 
  * @export
- * @interface ReelDTO
+ * @interface UserDTO
  */
-export interface ReelDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof ReelDTO
-     */
-    'version'?: number;
+export interface UserDTO {
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof UserDTO
      */
     'id': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof UserDTO
      */
-    'userId': string;
+    'username': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof UserDTO
      */
-    'title': string;
+    'email': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof UserDTO
      */
-    'videoUrl': string;
+    'passwordHash': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof UserDTO
      */
     'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDTO
+     */
+    'keycloakUserId': string;
 }
 

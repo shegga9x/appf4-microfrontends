@@ -1,37 +1,37 @@
-# FeedItemResourceApi
+# PexelsControllerApi
 
 All URIs are relative to */services/msfeed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**createFeedItem**](#createfeeditem) | **POST** /api/feed-items | |
-|[**deleteFeedItem**](#deletefeeditem) | **DELETE** /api/feed-items/{id} | |
-|[**getAllFeedItems**](#getallfeeditems) | **GET** /api/feed-items | |
-|[**getFeedItem**](#getfeeditem) | **GET** /api/feed-items/{id} | |
-|[**partialUpdateFeedItem**](#partialupdatefeeditem) | **PATCH** /api/feed-items/{id} | |
-|[**searchFeedItems**](#searchfeeditems) | **GET** /api/feed-items/_search | |
-|[**updateFeedItem**](#updatefeeditem) | **PUT** /api/feed-items/{id} | |
+|[**downloadAndStoreImage**](#downloadandstoreimage) | **POST** /api/pexels/download | |
+|[**downloadAndStoreVideo**](#downloadandstorevideo) | **POST** /api/pexels/videos/download | |
+|[**searchImages**](#searchimages) | **GET** /api/pexels/search | |
+|[**searchVideos**](#searchvideos) | **GET** /api/pexels/videos/search | |
+|[**storePexelsImage**](#storepexelsimage) | **POST** /api/pexels/store | |
+|[**storePexelsVideo**](#storepexelsvideo) | **POST** /api/pexels/videos/store | |
+|[**uploadImage**](#uploadimage) | **POST** /api/pexels/upload | |
+|[**uploadVideo**](#uploadvideo) | **POST** /api/pexels/videos/upload | |
 
-# **createFeedItem**
-> FeedItemDTO createFeedItem(feedItemDTO)
+# **downloadAndStoreImage**
+> string downloadAndStoreImage()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
-    Configuration,
-    FeedItemDTO
+    PexelsControllerApi,
+    Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new PexelsControllerApi(configuration);
 
-let feedItemDTO: FeedItemDTO; //
+let imageUrl: string; // (default to undefined)
 
-const { status, data } = await apiInstance.createFeedItem(
-    feedItemDTO
+const { status, data } = await apiInstance.downloadAndStoreImage(
+    imageUrl
 );
 ```
 
@@ -39,12 +39,319 @@ const { status, data } = await apiInstance.createFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **imageUrl** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **downloadAndStoreVideo**
+> string downloadAndStoreVideo()
+
+
+### Example
+
+```typescript
+import {
+    PexelsControllerApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new PexelsControllerApi(configuration);
+
+let videoUrl: string; // (default to undefined)
+
+const { status, data } = await apiInstance.downloadAndStoreVideo(
+    videoUrl
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **videoUrl** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **searchImages**
+> Array<string> searchImages()
+
+
+### Example
+
+```typescript
+import {
+    PexelsControllerApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new PexelsControllerApi(configuration);
+
+let query: string; // (default to undefined)
+let perPage: number; // (optional) (default to 10)
+
+const { status, data } = await apiInstance.searchImages(
+    query,
+    perPage
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **query** | [**string**] |  | defaults to undefined|
+| **perPage** | [**number**] |  | (optional) defaults to 10|
+
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **searchVideos**
+> Array<{ [key: string]: object; }> searchVideos()
+
+
+### Example
+
+```typescript
+import {
+    PexelsControllerApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new PexelsControllerApi(configuration);
+
+let query: string; // (default to undefined)
+let perPage: number; // (optional) (default to 10)
+
+const { status, data } = await apiInstance.searchVideos(
+    query,
+    perPage
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **query** | [**string**] |  | defaults to undefined|
+| **perPage** | [**number**] |  | (optional) defaults to 10|
+
+
+### Return type
+
+**Array<{ [key: string]: object; }>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **storePexelsImage**
+> string storePexelsImage()
+
+
+### Example
+
+```typescript
+import {
+    PexelsControllerApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new PexelsControllerApi(configuration);
+
+let pexelsImageUrl: string; // (default to undefined)
+
+const { status, data } = await apiInstance.storePexelsImage(
+    pexelsImageUrl
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pexelsImageUrl** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **storePexelsVideo**
+> string storePexelsVideo()
+
+
+### Example
+
+```typescript
+import {
+    PexelsControllerApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new PexelsControllerApi(configuration);
+
+let pexelsVideoUrl: string; // (default to undefined)
+
+const { status, data } = await apiInstance.storePexelsVideo(
+    pexelsVideoUrl
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pexelsVideoUrl** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadImage**
+> string uploadImage()
+
+
+### Example
+
+```typescript
+import {
+    PexelsControllerApi,
+    Configuration,
+    UploadVideoRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new PexelsControllerApi(configuration);
+
+let uploadVideoRequest: UploadVideoRequest; // (optional)
+
+const { status, data } = await apiInstance.uploadImage(
+    uploadVideoRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **uploadVideoRequest** | **UploadVideoRequest**|  | |
+
+
+### Return type
+
+**string**
 
 ### Authorization
 
@@ -63,184 +370,26 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteFeedItem**
-> deleteFeedItem()
+# **uploadVideo**
+> string uploadVideo()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let id: string; // (default to undefined)
-
-const { status, data } = await apiInstance.deleteFeedItem(
-    id
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **id** | [**string**] |  | defaults to undefined|
-
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getAllFeedItems**
-> Array<FeedItemDTO> getAllFeedItems()
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let page: number; //Zero-based page index (0..N) (optional) (default to 0)
-let size: number; //The size of the page to be returned (optional) (default to 20)
-let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.getAllFeedItems(
-    page,
-    size,
-    sort
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
-| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
-| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
-
-
-### Return type
-
-**Array<FeedItemDTO>**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getFeedItem**
-> FeedItemDTO getFeedItem()
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let id: string; // (default to undefined)
-
-const { status, data } = await apiInstance.getFeedItem(
-    id
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **id** | [**string**] |  | defaults to undefined|
-
-
-### Return type
-
-**FeedItemDTO**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **partialUpdateFeedItem**
-> FeedItemDTO partialUpdateFeedItem(feedItemDTO)
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
+    PexelsControllerApi,
     Configuration,
-    FeedItemDTO
+    UploadVideoRequest
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new PexelsControllerApi(configuration);
 
-let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let uploadVideoRequest: UploadVideoRequest; // (optional)
 
-const { status, data } = await apiInstance.partialUpdateFeedItem(
-    id,
-    feedItemDTO
+const { status, data } = await apiInstance.uploadVideo(
+    uploadVideoRequest
 );
 ```
 
@@ -248,126 +397,12 @@ const { status, data } = await apiInstance.partialUpdateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
-| **id** | [**string**] |  | defaults to undefined|
+| **uploadVideoRequest** | **UploadVideoRequest**|  | |
 
 
 ### Return type
 
-**FeedItemDTO**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/merge-patch+json
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **searchFeedItems**
-> Array<FeedItemDTO> searchFeedItems()
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let query: string; // (default to undefined)
-let page: number; //Zero-based page index (0..N) (optional) (default to 0)
-let size: number; //The size of the page to be returned (optional) (default to 20)
-let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchFeedItems(
-    query,
-    page,
-    size,
-    sort
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **query** | [**string**] |  | defaults to undefined|
-| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
-| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
-| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
-
-
-### Return type
-
-**Array<FeedItemDTO>**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **updateFeedItem**
-> FeedItemDTO updateFeedItem(feedItemDTO)
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
-    Configuration,
-    FeedItemDTO
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
-
-const { status, data } = await apiInstance.updateFeedItem(
-    id,
-    feedItemDTO
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
-| **id** | [**string**] |  | defaults to undefined|
-
-
-### Return type
-
-**FeedItemDTO**
+**string**
 
 ### Authorization
 

@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Ms Reel API
- * Ms Reel API documentation
+ * Ms Feed API
+ * Ms Feed API documentation
  *
  * The version of the OpenAPI document: 0.0.1
  * Contact: 
@@ -14,8 +14,14 @@
 
 
 
+export * from './api/comment-resource-api';
+export * from './api/elasticsearch-admin-resource-api';
 export * from './api/feed-item-resource-api';
-export * from './api/ms-feed-kafka-resource-api';
-export * from './api/ms-reel-kafka-resource-api';
+export * from './api/keycloak-user-resource-api';
+export * from './api/like-resource-api';
+export * from './api/ms-commentlike-kafka-resource-api';
+export * from './api/notification-resource-api';
+export * from './api/pexels-controller-api';
 export * from './api/reel-resource-api';
-export * from './api/login';
+export * from './api/user-resource-api';
+

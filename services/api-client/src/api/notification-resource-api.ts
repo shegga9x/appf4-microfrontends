@@ -22,23 +22,23 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { FeedItemDTO } from '../model';
+import type { NotificationDTO } from '../model';
 /**
- * FeedItemResourceApi - axios parameter creator
+ * NotificationResourceApi - axios parameter creator
  * @export
  */
-export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Configuration) {
+export const NotificationResourceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFeedItem: async (feedItemDTO: FeedItemDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'feedItemDTO' is not null or undefined
-            assertParamExists('createFeedItem', 'feedItemDTO', feedItemDTO)
-            const localVarPath = `/api/feed-items`;
+        createNotification: async (notificationDTO: NotificationDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'notificationDTO' is not null or undefined
+            assertParamExists('createNotification', 'notificationDTO', notificationDTO)
+            const localVarPath = `/api/notifications`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -57,7 +57,7 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(feedItemDTO, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(notificationDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -70,10 +70,10 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFeedItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteNotification: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('deleteFeedItem', 'id', id)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('deleteNotification', 'id', id)
+            const localVarPath = `/api/notifications/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -105,8 +105,8 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedItems: async (page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/feed-items`;
+        getAllNotifications: async (page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/notifications`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -147,10 +147,10 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getNotification: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('getFeedItem', 'id', id)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('getNotification', 'id', id)
+            const localVarPath = `/api/notifications/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -177,16 +177,16 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        partialUpdateFeedItem: async (id: string, feedItemDTO: FeedItemDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        partialUpdateNotification: async (id: string, notificationDTO: NotificationDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('partialUpdateFeedItem', 'id', id)
-            // verify required parameter 'feedItemDTO' is not null or undefined
-            assertParamExists('partialUpdateFeedItem', 'feedItemDTO', feedItemDTO)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('partialUpdateNotification', 'id', id)
+            // verify required parameter 'notificationDTO' is not null or undefined
+            assertParamExists('partialUpdateNotification', 'notificationDTO', notificationDTO)
+            const localVarPath = `/api/notifications/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -206,58 +206,7 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(feedItemDTO, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} query 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        searchFeedItems: async (query: string, page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'query' is not null or undefined
-            assertParamExists('searchFeedItems', 'query', query)
-            const localVarPath = `/api/feed-items/_search`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (query !== undefined) {
-                localVarQueryParameter['query'] = query;
-            }
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
-
-            if (sort) {
-                localVarQueryParameter['sort'] = sort;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(notificationDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -267,16 +216,16 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFeedItem: async (id: string, feedItemDTO: FeedItemDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateNotification: async (id: string, notificationDTO: NotificationDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('updateFeedItem', 'id', id)
-            // verify required parameter 'feedItemDTO' is not null or undefined
-            assertParamExists('updateFeedItem', 'feedItemDTO', feedItemDTO)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('updateNotification', 'id', id)
+            // verify required parameter 'notificationDTO' is not null or undefined
+            assertParamExists('updateNotification', 'notificationDTO', notificationDTO)
+            const localVarPath = `/api/notifications/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -296,7 +245,7 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(feedItemDTO, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(notificationDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -307,22 +256,22 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
 };
 
 /**
- * FeedItemResourceApi - functional programming interface
+ * NotificationResourceApi - functional programming interface
  * @export
  */
-export const FeedItemResourceApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = FeedItemResourceApiAxiosParamCreator(configuration)
+export const NotificationResourceApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = NotificationResourceApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createFeedItem(feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFeedItem(feedItemDTO, options);
+        async createNotification(notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createNotification(notificationDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.createFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['NotificationResourceApi.createNotification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -331,10 +280,10 @@ export const FeedItemResourceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteFeedItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFeedItem(id, options);
+        async deleteNotification(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteNotification(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.deleteFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['NotificationResourceApi.deleteNotification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -345,10 +294,10 @@ export const FeedItemResourceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllFeedItems(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FeedItemDTO>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFeedItems(page, size, sort, options);
+        async getAllNotifications(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<NotificationDTO>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllNotifications(page, size, sort, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.getAllFeedItems']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['NotificationResourceApi.getAllNotifications']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -357,71 +306,56 @@ export const FeedItemResourceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeedItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedItem(id, options);
+        async getNotification(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getNotification(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.getFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['NotificationResourceApi.getNotification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async partialUpdateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateFeedItem(id, feedItemDTO, options);
+        async partialUpdateNotification(id: string, notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateNotification(id, notificationDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.partialUpdateFeedItem']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} query 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async searchFeedItems(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FeedItemDTO>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchFeedItems(query, page, size, sort, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.searchFeedItems']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['NotificationResourceApi.partialUpdateNotification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateFeedItem(id, feedItemDTO, options);
+        async updateNotification(id: string, notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NotificationDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNotification(id, notificationDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.updateFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['NotificationResourceApi.updateNotification']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * FeedItemResourceApi - factory interface
+ * NotificationResourceApi - factory interface
  * @export
  */
-export const FeedItemResourceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = FeedItemResourceApiFp(configuration)
+export const NotificationResourceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = NotificationResourceApiFp(configuration)
     return {
         /**
          * 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFeedItem(feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.createFeedItem(feedItemDTO, options).then((request) => request(axios, basePath));
+        createNotification(notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig): AxiosPromise<NotificationDTO> {
+            return localVarFp.createNotification(notificationDTO, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -429,8 +363,8 @@ export const FeedItemResourceApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFeedItem(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.deleteFeedItem(id, options).then((request) => request(axios, basePath));
+        deleteNotification(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteNotification(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -440,8 +374,8 @@ export const FeedItemResourceApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedItems(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<FeedItemDTO>> {
-            return localVarFp.getAllFeedItems(page, size, sort, options).then((request) => request(axios, basePath));
+        getAllNotifications(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<NotificationDTO>> {
+            return localVarFp.getAllNotifications(page, size, sort, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -449,60 +383,48 @@ export const FeedItemResourceApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItem(id: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.getFeedItem(id, options).then((request) => request(axios, basePath));
+        getNotification(id: string, options?: RawAxiosRequestConfig): AxiosPromise<NotificationDTO> {
+            return localVarFp.getNotification(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        partialUpdateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.partialUpdateFeedItem(id, feedItemDTO, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} query 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        searchFeedItems(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<FeedItemDTO>> {
-            return localVarFp.searchFeedItems(query, page, size, sort, options).then((request) => request(axios, basePath));
+        partialUpdateNotification(id: string, notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig): AxiosPromise<NotificationDTO> {
+            return localVarFp.partialUpdateNotification(id, notificationDTO, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {NotificationDTO} notificationDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.updateFeedItem(id, feedItemDTO, options).then((request) => request(axios, basePath));
+        updateNotification(id: string, notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig): AxiosPromise<NotificationDTO> {
+            return localVarFp.updateNotification(id, notificationDTO, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * FeedItemResourceApi - object-oriented interface
+ * NotificationResourceApi - object-oriented interface
  * @export
- * @class FeedItemResourceApi
+ * @class NotificationResourceApi
  * @extends {BaseAPI}
  */
-export class FeedItemResourceApi extends BaseAPI {
+export class NotificationResourceApi extends BaseAPI {
     /**
      * 
-     * @param {FeedItemDTO} feedItemDTO 
+     * @param {NotificationDTO} notificationDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof NotificationResourceApi
      */
-    public createFeedItem(feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).createFeedItem(feedItemDTO, options).then((request) => request(this.axios, this.basePath));
+    public createNotification(notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig) {
+        return NotificationResourceApiFp(this.configuration).createNotification(notificationDTO, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -510,10 +432,10 @@ export class FeedItemResourceApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof NotificationResourceApi
      */
-    public deleteFeedItem(id: string, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).deleteFeedItem(id, options).then((request) => request(this.axios, this.basePath));
+    public deleteNotification(id: string, options?: RawAxiosRequestConfig) {
+        return NotificationResourceApiFp(this.configuration).deleteNotification(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -523,10 +445,10 @@ export class FeedItemResourceApi extends BaseAPI {
      * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof NotificationResourceApi
      */
-    public getAllFeedItems(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).getAllFeedItems(page, size, sort, options).then((request) => request(this.axios, this.basePath));
+    public getAllNotifications(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
+        return NotificationResourceApiFp(this.configuration).getAllNotifications(page, size, sort, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -534,48 +456,34 @@ export class FeedItemResourceApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof NotificationResourceApi
      */
-    public getFeedItem(id: string, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).getFeedItem(id, options).then((request) => request(this.axios, this.basePath));
+    public getNotification(id: string, options?: RawAxiosRequestConfig) {
+        return NotificationResourceApiFp(this.configuration).getNotification(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {string} id 
-     * @param {FeedItemDTO} feedItemDTO 
+     * @param {NotificationDTO} notificationDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof NotificationResourceApi
      */
-    public partialUpdateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).partialUpdateFeedItem(id, feedItemDTO, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} query 
-     * @param {number} [page] Zero-based page index (0..N)
-     * @param {number} [size] The size of the page to be returned
-     * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
-     */
-    public searchFeedItems(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).searchFeedItems(query, page, size, sort, options).then((request) => request(this.axios, this.basePath));
+    public partialUpdateNotification(id: string, notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig) {
+        return NotificationResourceApiFp(this.configuration).partialUpdateNotification(id, notificationDTO, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {string} id 
-     * @param {FeedItemDTO} feedItemDTO 
+     * @param {NotificationDTO} notificationDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof NotificationResourceApi
      */
-    public updateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).updateFeedItem(id, feedItemDTO, options).then((request) => request(this.axios, this.basePath));
+    public updateNotification(id: string, notificationDTO: NotificationDTO, options?: RawAxiosRequestConfig) {
+        return NotificationResourceApiFp(this.configuration).updateNotification(id, notificationDTO, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

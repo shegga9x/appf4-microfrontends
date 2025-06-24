@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Ms Reel API
- * Ms Reel API documentation
+ * Ms Feed API
+ * Ms Feed API documentation
  *
  * The version of the OpenAPI document: 0.0.1
  * Contact: 

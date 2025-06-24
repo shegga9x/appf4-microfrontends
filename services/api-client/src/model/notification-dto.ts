@@ -17,43 +17,43 @@
 /**
  * 
  * @export
- * @interface ReelDTO
+ * @interface NotificationDTO
  */
-export interface ReelDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof ReelDTO
-     */
-    'version'?: number;
+export interface NotificationDTO {
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof NotificationDTO
      */
     'id': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof NotificationDTO
      */
-    'userId': string;
+    'recipientId': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof NotificationDTO
      */
-    'title': string;
+    'type': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof NotificationDTO
      */
-    'videoUrl': string;
+    'message'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NotificationDTO
+     */
+    'isRead': boolean;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof NotificationDTO
      */
     'createdAt': string;
 }

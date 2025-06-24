@@ -1,28 +1,28 @@
-# ReelDTO
+# CommentDTO
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **number** |  | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
+**parentType** | **string** |  | [default to undefined]
+**parentId** | **string** |  | [default to undefined]
 **userId** | **string** |  | [default to undefined]
-**title** | **string** |  | [default to undefined]
-**videoUrl** | **string** |  | [default to undefined]
+**content** | **string** |  | [optional] [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { ReelDTO } from './api';
+import { CommentDTO } from './api';
 
-const instance: ReelDTO = {
-    version,
+const instance: CommentDTO = {
     id,
+    parentType,
+    parentId,
     userId,
-    title,
-    videoUrl,
+    content,
     createdAt,
 };
 ```

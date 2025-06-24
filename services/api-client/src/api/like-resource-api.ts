@@ -22,23 +22,23 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { FeedItemDTO } from '../model';
+import type { LikeDTO } from '../model';
 /**
- * FeedItemResourceApi - axios parameter creator
+ * LikeResourceApi - axios parameter creator
  * @export
  */
-export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Configuration) {
+export const LikeResourceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFeedItem: async (feedItemDTO: FeedItemDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'feedItemDTO' is not null or undefined
-            assertParamExists('createFeedItem', 'feedItemDTO', feedItemDTO)
-            const localVarPath = `/api/feed-items`;
+        createLike: async (likeDTO: LikeDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'likeDTO' is not null or undefined
+            assertParamExists('createLike', 'likeDTO', likeDTO)
+            const localVarPath = `/api/likes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -57,7 +57,7 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(feedItemDTO, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(likeDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -70,10 +70,10 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFeedItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteLike: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('deleteFeedItem', 'id', id)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('deleteLike', 'id', id)
+            const localVarPath = `/api/likes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -105,8 +105,8 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedItems: async (page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/feed-items`;
+        getAllLikes: async (page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/likes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -147,10 +147,10 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLike: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('getFeedItem', 'id', id)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('getLike', 'id', id)
+            const localVarPath = `/api/likes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -177,16 +177,16 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        partialUpdateFeedItem: async (id: string, feedItemDTO: FeedItemDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        partialUpdateLike: async (id: string, likeDTO: LikeDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('partialUpdateFeedItem', 'id', id)
-            // verify required parameter 'feedItemDTO' is not null or undefined
-            assertParamExists('partialUpdateFeedItem', 'feedItemDTO', feedItemDTO)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('partialUpdateLike', 'id', id)
+            // verify required parameter 'likeDTO' is not null or undefined
+            assertParamExists('partialUpdateLike', 'likeDTO', likeDTO)
+            const localVarPath = `/api/likes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -206,58 +206,7 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(feedItemDTO, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} query 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        searchFeedItems: async (query: string, page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'query' is not null or undefined
-            assertParamExists('searchFeedItems', 'query', query)
-            const localVarPath = `/api/feed-items/_search`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (query !== undefined) {
-                localVarQueryParameter['query'] = query;
-            }
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
-
-            if (sort) {
-                localVarQueryParameter['sort'] = sort;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(likeDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -267,16 +216,16 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFeedItem: async (id: string, feedItemDTO: FeedItemDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateLike: async (id: string, likeDTO: LikeDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('updateFeedItem', 'id', id)
-            // verify required parameter 'feedItemDTO' is not null or undefined
-            assertParamExists('updateFeedItem', 'feedItemDTO', feedItemDTO)
-            const localVarPath = `/api/feed-items/{id}`
+            assertParamExists('updateLike', 'id', id)
+            // verify required parameter 'likeDTO' is not null or undefined
+            assertParamExists('updateLike', 'likeDTO', likeDTO)
+            const localVarPath = `/api/likes/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -296,7 +245,7 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(feedItemDTO, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(likeDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -307,22 +256,22 @@ export const FeedItemResourceApiAxiosParamCreator = function (configuration?: Co
 };
 
 /**
- * FeedItemResourceApi - functional programming interface
+ * LikeResourceApi - functional programming interface
  * @export
  */
-export const FeedItemResourceApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = FeedItemResourceApiAxiosParamCreator(configuration)
+export const LikeResourceApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = LikeResourceApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createFeedItem(feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFeedItem(feedItemDTO, options);
+        async createLike(likeDTO: LikeDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LikeDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createLike(likeDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.createFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.createLike']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -331,10 +280,10 @@ export const FeedItemResourceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteFeedItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFeedItem(id, options);
+        async deleteLike(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteLike(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.deleteFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.deleteLike']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -345,10 +294,10 @@ export const FeedItemResourceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllFeedItems(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FeedItemDTO>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllFeedItems(page, size, sort, options);
+        async getAllLikes(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LikeDTO>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllLikes(page, size, sort, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.getAllFeedItems']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.getAllLikes']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -357,71 +306,56 @@ export const FeedItemResourceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeedItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFeedItem(id, options);
+        async getLike(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LikeDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLike(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.getFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.getLike']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async partialUpdateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateFeedItem(id, feedItemDTO, options);
+        async partialUpdateLike(id: string, likeDTO: LikeDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LikeDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.partialUpdateLike(id, likeDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.partialUpdateFeedItem']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} query 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async searchFeedItems(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FeedItemDTO>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchFeedItems(query, page, size, sort, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.searchFeedItems']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.partialUpdateLike']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItemDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateFeedItem(id, feedItemDTO, options);
+        async updateLike(id: string, likeDTO: LikeDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LikeDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateLike(id, likeDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['FeedItemResourceApi.updateFeedItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.updateLike']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * FeedItemResourceApi - factory interface
+ * LikeResourceApi - factory interface
  * @export
  */
-export const FeedItemResourceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = FeedItemResourceApiFp(configuration)
+export const LikeResourceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = LikeResourceApiFp(configuration)
     return {
         /**
          * 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFeedItem(feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.createFeedItem(feedItemDTO, options).then((request) => request(axios, basePath));
+        createLike(likeDTO: LikeDTO, options?: RawAxiosRequestConfig): AxiosPromise<LikeDTO> {
+            return localVarFp.createLike(likeDTO, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -429,8 +363,8 @@ export const FeedItemResourceApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFeedItem(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.deleteFeedItem(id, options).then((request) => request(axios, basePath));
+        deleteLike(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteLike(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -440,8 +374,8 @@ export const FeedItemResourceApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllFeedItems(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<FeedItemDTO>> {
-            return localVarFp.getAllFeedItems(page, size, sort, options).then((request) => request(axios, basePath));
+        getAllLikes(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<LikeDTO>> {
+            return localVarFp.getAllLikes(page, size, sort, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -449,60 +383,48 @@ export const FeedItemResourceApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeedItem(id: string, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.getFeedItem(id, options).then((request) => request(axios, basePath));
+        getLike(id: string, options?: RawAxiosRequestConfig): AxiosPromise<LikeDTO> {
+            return localVarFp.getLike(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        partialUpdateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.partialUpdateFeedItem(id, feedItemDTO, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} query 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        searchFeedItems(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<FeedItemDTO>> {
-            return localVarFp.searchFeedItems(query, page, size, sort, options).then((request) => request(axios, basePath));
+        partialUpdateLike(id: string, likeDTO: LikeDTO, options?: RawAxiosRequestConfig): AxiosPromise<LikeDTO> {
+            return localVarFp.partialUpdateLike(id, likeDTO, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} id 
-         * @param {FeedItemDTO} feedItemDTO 
+         * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig): AxiosPromise<FeedItemDTO> {
-            return localVarFp.updateFeedItem(id, feedItemDTO, options).then((request) => request(axios, basePath));
+        updateLike(id: string, likeDTO: LikeDTO, options?: RawAxiosRequestConfig): AxiosPromise<LikeDTO> {
+            return localVarFp.updateLike(id, likeDTO, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * FeedItemResourceApi - object-oriented interface
+ * LikeResourceApi - object-oriented interface
  * @export
- * @class FeedItemResourceApi
+ * @class LikeResourceApi
  * @extends {BaseAPI}
  */
-export class FeedItemResourceApi extends BaseAPI {
+export class LikeResourceApi extends BaseAPI {
     /**
      * 
-     * @param {FeedItemDTO} feedItemDTO 
+     * @param {LikeDTO} likeDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof LikeResourceApi
      */
-    public createFeedItem(feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).createFeedItem(feedItemDTO, options).then((request) => request(this.axios, this.basePath));
+    public createLike(likeDTO: LikeDTO, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).createLike(likeDTO, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -510,10 +432,10 @@ export class FeedItemResourceApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof LikeResourceApi
      */
-    public deleteFeedItem(id: string, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).deleteFeedItem(id, options).then((request) => request(this.axios, this.basePath));
+    public deleteLike(id: string, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).deleteLike(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -523,10 +445,10 @@ export class FeedItemResourceApi extends BaseAPI {
      * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof LikeResourceApi
      */
-    public getAllFeedItems(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).getAllFeedItems(page, size, sort, options).then((request) => request(this.axios, this.basePath));
+    public getAllLikes(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).getAllLikes(page, size, sort, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -534,48 +456,34 @@ export class FeedItemResourceApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof LikeResourceApi
      */
-    public getFeedItem(id: string, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).getFeedItem(id, options).then((request) => request(this.axios, this.basePath));
+    public getLike(id: string, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).getLike(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {string} id 
-     * @param {FeedItemDTO} feedItemDTO 
+     * @param {LikeDTO} likeDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof LikeResourceApi
      */
-    public partialUpdateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).partialUpdateFeedItem(id, feedItemDTO, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} query 
-     * @param {number} [page] Zero-based page index (0..N)
-     * @param {number} [size] The size of the page to be returned
-     * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
-     */
-    public searchFeedItems(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).searchFeedItems(query, page, size, sort, options).then((request) => request(this.axios, this.basePath));
+    public partialUpdateLike(id: string, likeDTO: LikeDTO, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).partialUpdateLike(id, likeDTO, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {string} id 
-     * @param {FeedItemDTO} feedItemDTO 
+     * @param {LikeDTO} likeDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeedItemResourceApi
+     * @memberof LikeResourceApi
      */
-    public updateFeedItem(id: string, feedItemDTO: FeedItemDTO, options?: RawAxiosRequestConfig) {
-        return FeedItemResourceApiFp(this.configuration).updateFeedItem(id, feedItemDTO, options).then((request) => request(this.axios, this.basePath));
+    public updateLike(id: string, likeDTO: LikeDTO, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).updateLike(id, likeDTO, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

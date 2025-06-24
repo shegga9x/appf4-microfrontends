@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Ms Reel API
- * Ms Reel API documentation
+ * Ms Feed API
+ * Ms Feed API documentation
  *
  * The version of the OpenAPI document: 0.0.1
  * Contact: 
@@ -23,6 +23,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import type { ReelDTO } from '../model';
+// @ts-ignore
+import type { UserDTO } from '../model';
 /**
  * ReelResourceApi - axios parameter creator
  * @export
@@ -266,6 +268,45 @@ export const ReelResourceApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * 
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        testGetAllUsers: async (page?: number, size?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/reels/test-users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {ReelDTO} reelDTO 
          * @param {*} [options] Override http request option.
@@ -393,6 +434,19 @@ export const ReelResourceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async testGetAllUsers(page?: number, size?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UserDTO>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.testGetAllUsers(page, size, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReelResourceApi.testGetAllUsers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {ReelDTO} reelDTO 
          * @param {*} [options] Override http request option.
@@ -473,6 +527,16 @@ export const ReelResourceApiFactory = function (configuration?: Configuration, b
          */
         searchReels(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<ReelDTO>> {
             return localVarFp.searchReels(query, page, size, sort, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        testGetAllUsers(page?: number, size?: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<UserDTO>> {
+            return localVarFp.testGetAllUsers(page, size, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -564,6 +628,18 @@ export class ReelResourceApi extends BaseAPI {
      */
     public searchReels(query: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
         return ReelResourceApiFp(this.configuration).searchReels(query, page, size, sort, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] 
+     * @param {number} [size] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReelResourceApi
+     */
+    public testGetAllUsers(page?: number, size?: number, options?: RawAxiosRequestConfig) {
+        return ReelResourceApiFp(this.configuration).testGetAllUsers(page, size, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

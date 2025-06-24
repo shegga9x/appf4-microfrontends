@@ -1,28 +1,28 @@
-# ReelDTO
+# NotificationDTO
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **number** |  | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
-**userId** | **string** |  | [default to undefined]
-**title** | **string** |  | [default to undefined]
-**videoUrl** | **string** |  | [default to undefined]
+**recipientId** | **string** |  | [default to undefined]
+**type** | **string** |  | [default to undefined]
+**message** | **string** |  | [optional] [default to undefined]
+**isRead** | **boolean** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { ReelDTO } from './api';
+import { NotificationDTO } from './api';
 
-const instance: ReelDTO = {
-    version,
+const instance: NotificationDTO = {
     id,
-    userId,
-    title,
-    videoUrl,
+    recipientId,
+    type,
+    message,
+    isRead,
     createdAt,
 };
 ```

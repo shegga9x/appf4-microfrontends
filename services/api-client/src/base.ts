@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Ms Reel API
- * Ms Reel API documentation
+ * Ms Feed API
+ * Ms Feed API documentation
  *
  * The version of the OpenAPI document: 0.0.1
  * Contact: 
@@ -19,7 +19,7 @@ import type { Configuration } from './configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 
-export const BASE_PATH = "/services/msreels".replace(/\/+$/, "");
+export const BASE_PATH = "/services/msfeed".replace(/\/+$/, "");
 
 /**
  *

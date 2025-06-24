@@ -17,43 +17,43 @@
 /**
  * 
  * @export
- * @interface ReelDTO
+ * @interface CommentDTO
  */
-export interface ReelDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof ReelDTO
-     */
-    'version'?: number;
+export interface CommentDTO {
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof CommentDTO
      */
     'id': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof CommentDTO
+     */
+    'parentType': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentDTO
+     */
+    'parentId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentDTO
      */
     'userId': string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof CommentDTO
      */
-    'title': string;
+    'content'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
-     */
-    'videoUrl': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReelDTO
+     * @memberof CommentDTO
      */
     'createdAt': string;
 }

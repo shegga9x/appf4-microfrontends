@@ -4,61 +4,159 @@ import { useState, useEffect } from 'react';
 import { log } from "@repo/logger";
 import { Link } from "@repo/ui/link";
 import { CounterButton } from "@repo/ui/counter-button";
+import { FeedItemResourceApi } from "@repo/api-client";
+import { Configuration } from "@repo/api-client";
+import type { FeedItemDTO } from "@repo/api-client";
+import { config } from 'dotenv';
+
 export const metadata = {
   title: "Store | Kitchen Sink",
 };
 
 export default function Store() {
-  log("Hey! This is the Post page.");
+  log("Hey! This is the Feed page.");
 
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      author: 'John Doe',
-      avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-      time: '2h',
-      content: 'Just had an amazing day at the beach! 🏖️ The weather was perfect and the sunset was incredible.',
-      image: 'https://via.placeholder.com/500x300',
-      likes: 24,
-      comments: 8,
-      shares: 3,
-      commentsList: [
-        { id: 1, author: 'Sarah Wilson', avatar: 'https://randomuser.me/api/portraits/women/2.jpg', content: 'Looks amazing! Which beach was this?', time: '1h' },
-        { id: 2, author: 'Tom Brown', avatar: 'https://randomuser.me/api/portraits/men/3.jpg', content: 'Beautiful sunset! 🌅', time: '45m' }
-      ]
-    },
-    {
-      id: 2,
-      author: 'Jane Smith',
-      avatar: 'https://randomuser.me/api/portraits/women/4.jpg',
-      time: '4h',
-      content: 'Working on some exciting new projects! Can\'t wait to share more details soon. #coding #webdev',
-      likes: 15,
-      comments: 4,
-      shares: 1,
-      commentsList: [
-        { id: 1, author: 'Alex Johnson', avatar: 'https://randomuser.me/api/portraits/men/5.jpg', content: 'Can\'t wait to see what you\'re building!', time: '2h' }
-      ]
-    },
-    {
-      id: 3,
-      author: 'Mike Johnson',
-      avatar: 'https://randomuser.me/api/portraits/men/6.jpg',
-      time: '6h',
-      content: 'Great coffee and even better company this morning ☕',
-      image: 'https://via.placeholder.com/500x200',
-      likes: 32,
-      comments: 12,
-      shares: 5,
-      commentsList: [
-        { id: 1, author: 'Emma Davis', avatar: 'https://randomuser.me/api/portraits/women/7.jpg', content: 'That looks like the perfect morning!', time: '4h' },
-        { id: 2, author: 'Chris Lee', avatar: 'https://randomuser.me/api/portraits/men/8.jpg', content: 'Great choice of cafe! ☕', time: '3h' }
-      ]
-    }
-  ]);
-
+  const [posts, setPosts] = useState<any[]>([]);
+  const [reels, setReels] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
   const [newComment, setNewComment] = useState<Record<number, string>>({});
+
+  const config = new Configuration({
+    basePath: 'http://localhost:8080/services/msfeed',
+    // accessToken: "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJXeHBBeFg3MDVjUkxXOG5MWi1LWmNCX2ZFSlhBcnRxMDNKUW91Zk5uRTdvIn0.eyJleHAiOjE3NTA3MzQ0NTIsImlhdCI6MTc1MDczNDE1MiwianRpIjoiYWFjMzYzOTktOTY1Yi00ZjA4LTkwZTMtZWEwNzJkNjcyNzdiIiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5hcHBmNC5pby52bi9yZWFsbXMvamhpcHN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNGM5NzM4OTYtNTc2MS00MWZjLTgyMTctMDdjNWQxM2EwMDRiIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViX2FwcCIsInNpZCI6IjVkYTE3MjU3LTVlNzEtNGZkNi1iY2Y5LWYxNDhjMTg1N2RkYyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiIiwiaHR0cDovL2xvY2FsaG9zdDo4MDgwIiwiaHR0cHM6Ly9jb25zdWwuYXBwZjQuaW8udm4vKiIsImh0dHBzOi8vbXlzcWwuYXBwZjQuaW8udm4vKiIsIioiLCJodHRwczovL2thZmthLmFwcGY0LmlvLnZuLyoiLCJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJodHRwczovL3JlZGlzLmFwcGY0LmlvLnZuLyoiLCJodHRwOi8vbG9jYWxob3N0OjgxMDAiLCJodHRwczovL2thZmRyb3AuYXBwZjQuaW8udm4vKiIsImh0dHBzOi8vbG9jYWxob3N0OjgwODAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInJvbGVzIjpbIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl0sIm5hbWUiOiJBZG1pbiBBZG1pbmlzdHJhdG9yIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IkFkbWluaXN0cmF0b3IiLCJlbWFpbCI6ImFkbWluQGxvY2FsaG9zdCJ9.lb8hUiBDeUcG9gcVTre6XS9T7zZcWqKx1a8yKWm1VProRQPA_CgzGmrixh-41X4PdDOvv2yxQ0QVXXSOsS132CtZy2Ax7CKoHTOQw8zNf5F2dko4xlUUusDOSe8RrVHKXcgLj3-hKw4YQxR4QQrh3p9FzzsmxmfYfWqHtzDgxC-PAxmsGWRcAnGRVuahJxmqtWzlDGvmu1l6Tm3yevGyscBB9qSNt8fSmMs_OQN2ZZUVoRSlGWlSWloWUBOFLNscXx1DI4xhjwd-3zZBzwMVReQPWbOoUGqvx58EaXuuI82M_OgqQKFcV0mIWvzeFy_Fd2C2upUJ6h2FcCv0-F0YkA",
+
+    baseOptions: {
+      headers: {
+        // You can add additional headers here if needed
+      },
+    },
+  });
+  const feedApi = new FeedItemResourceApi(config);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        // Fetch feed items
+        const feedResponse = await feedApi.getAllFeedItems(0, 10);
+        const feedItems = feedResponse.data || [];
+
+        // Transform feed items to match existing post structure
+        const transformedPosts = feedItems.map((item: FeedItemDTO, index: number) => ({
+          id: item.id || index + 1,
+          author: item.userId || 'Unknown User',
+          avatar: item.userId || `https://randomuser.me/api/portraits/men/${index + 1}.jpg`,
+          time: item.timestamp ? new Date(item.timestamp).toLocaleString() : '1h',
+          content: item.userId || '',
+          image: item.userId,
+          likes: item.userId || 0,
+          comments: item.userId || 0,
+          shares: item.userId || 0,
+          commentsList: []
+        }));
+
+        // Set hardcoded reels for now since ReelResourceApi is not available
+        const hardcodedReels = [
+          {
+            id: 1,
+            videoUrl: 'https://media.giphy.com/media/3o7buirYcmV5nSwIRW/giphy.gif',
+            username: '@funnycats',
+            avatar: 'https://via.placeholder.com/24',
+            title: 'Funny Cat Video',
+            description: 'Hilarious cat moments'
+          },
+          {
+            id: 2,
+            videoUrl: 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
+            username: '@dancingdogs',
+            avatar: 'https://via.placeholder.com/24',
+            title: 'Dancing Dogs',
+            description: 'Dogs having fun'
+          },
+          {
+            id: 3,
+            videoUrl: 'https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif',
+            username: '@foodie_life',
+            avatar: 'https://via.placeholder.com/24',
+            title: 'Cooking Tips',
+            description: 'Amazing recipes'
+          },
+          {
+            id: 4,
+            videoUrl: 'https://media.giphy.com/media/l2Je66zG6mAAZxgqI/giphy.gif',
+            username: '@travel_vibes',
+            avatar: 'https://via.placeholder.com/24',
+            title: 'Travel Adventures',
+            description: 'Beautiful destinations'
+          }
+        ];
+
+        setPosts(transformedPosts);
+        setReels(hardcodedReels);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Fallback to original hardcoded data if API fails
+        setPosts([
+          {
+            id: 1,
+            author: 'John Doe',
+            avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+            time: '2h',
+            content: 'Just had an amazing day at the beach! 🏖️ The weather was perfect and the sunset was incredible.',
+            image: 'https://via.placeholder.com/500x300',
+            likes: 24,
+            comments: 8,
+            shares: 3,
+            commentsList: [
+              { id: 1, author: 'Sarah Wilson', avatar: 'https://randomuser.me/api/portraits/women/2.jpg', content: 'Looks amazing! Which beach was this?', time: '1h' },
+              { id: 2, author: 'Tom Brown', avatar: 'https://randomuser.me/api/portraits/men/3.jpg', content: 'Beautiful sunset! 🌅', time: '45m' }
+            ]
+          }
+        ]);
+        setReels([
+          {
+            id: 1,
+            videoUrl: 'https://media.giphy.com/media/3o7buirYcmV5nSwIRW/giphy.gif',
+            username: '@funnycats',
+            avatar: 'https://via.placeholder.com/24'
+          }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const [postIdBeingEdited, setPostIdBeingEdited] = useState<number | null>(null);
+  const [editedContent, setEditedContent] = useState<string>('');
+
+  const handleEditPost = (postId: number, currentContent: string) => {
+    setPostIdBeingEdited(postId);
+    setEditedContent(currentContent);
+  };
+
+  const handleUpdatePost = async (postId: number) => {
+    if (!editedContent.trim()) return;
+
+    try {
+      // In a real implementation, you would call an API to update the post
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post.id === postId
+            ? { ...post, content: editedContent.trim() }
+            : post
+        )
+      );
+      setPostIdBeingEdited(null);
+      setEditedContent('');
+    } catch (error) {
+      console.error('Error updating post:', error);
+    }
+  };
 
   const toggleComments = (postId: number) => {
     setShowComments(prev => ({
@@ -67,37 +165,59 @@ export default function Store() {
     }));
   };
 
-  const handleAddComment = (postId: number) => {
+  const handleAddComment = async (postId: number) => {
     const commentText = newComment[postId];
     if (!commentText || !commentText.trim()) return;
 
-    setPosts(prevPosts =>
-      prevPosts.map(post =>
-        post.id === postId
-          ? {
-          ...post,
-          commentsList: [
-            ...post.commentsList,
-            {
-              id: post.commentsList.length + 1,
-              author: 'You',
-              avatar: 'https://randomuser.me/api/portraits/women/9.jpg',
-              content: commentText.trim(),
-              time: 'now'
+    try {
+      // In a real implementation, you would call an API to add the comment
+      // For now, we'll just update the local state
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post.id === postId
+            ? {
+              ...post,
+              commentsList: [
+                ...post.commentsList,
+                {
+                  id: post.commentsList.length + 1,
+                  author: 'You',
+                  avatar: 'https://randomuser.me/api/portraits/women/9.jpg',
+                  content: commentText.trim(),
+                  time: 'now'
+                }
+              ],
+              comments: post.comments + 1
             }
-          ],
-          comments: post.comments + 1
-        }
-          : post
-      )
-    );
+            : post
+        )
+      );
 
-    setNewComment(prev => ({ ...prev, [postId]: '' }));
+      setNewComment(prev => ({ ...prev, [postId]: '' }));
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
   };
 
   const handleCommentChange = (postId: number, value: string) => {
     setNewComment(prev => ({ ...prev, [postId]: value }));
   };
+
+  if (loading) {
+    return (
+      <div className="fb-container">
+        <div className="loading-spinner" style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          fontSize: '18px'
+        }}>
+          Loading feed...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fb-container">
@@ -222,7 +342,7 @@ export default function Store() {
             </div>
           </div>
 
-          {/* Posts Feed */}
+          {/* Posts Feed - Now using API data */}
           <div className="posts-feed">
             {posts.map(post => (
               <div key={post.id} className="post">
@@ -260,7 +380,7 @@ export default function Store() {
                 {showComments[post.id] && (
                   <div className="comments-section">
                     <div className="comments-list">
-                      {post.commentsList.map(comment => (
+                      {post.commentsList.map((comment: any) => (
                         <div key={comment.id} className="comment-item">
                           <img src={comment.avatar} alt={comment.author} className="comment-avatar" />
                           <div className="comment-content">
@@ -303,64 +423,27 @@ export default function Store() {
             ))}
           </div>
 
-          {/* Reels Section */}
+          {/* Reels Section - Now using API data */}
           <div className="reels-container">
             <div className="reels-header">
               <h3>Reels</h3>
               <span className="see-all">See all</span>
             </div>
             <div className="reels-grid">
-              <div className="reel-item">
-                <div className="reel-video">
-                  <img src="https://media.giphy.com/media/3o7buirYcmV5nSwIRW/giphy.gif" alt="Funny cat" />
-                  <div className="reel-overlay">
-                    <div className="play-button">▶</div>
+              {reels.map(reel => (
+                <div key={reel.id} className="reel-item">
+                  <div className="reel-video">
+                    <img src={reel.thumbnailUrl || reel.videoUrl} alt={reel.title || "Reel"} />
+                    <div className="reel-overlay">
+                      <div className="play-button">▶</div>
+                    </div>
+                  </div>
+                  <div className="reel-info">
+                    <img src={reel.avatar} alt="Avatar" className="reel-avatar" />
+                    <span className="reel-username">{reel.username}</span>
                   </div>
                 </div>
-                <div className="reel-info">
-                  <img src="https://via.placeholder.com/24" alt="Avatar" className="reel-avatar" />
-                  <span className="reel-username">@funnycats</span>
-                </div>
-              </div>
-
-              <div className="reel-item">
-                <div className="reel-video">
-                  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Dog dancing" />
-                  <div className="reel-overlay">
-                    <div className="play-button">▶</div>
-                  </div>
-                </div>
-                <div className="reel-info">
-                  <img src="https://via.placeholder.com/24" alt="Avatar" className="reel-avatar" />
-                  <span className="reel-username">@dancingdogs</span>
-                </div>
-              </div>
-
-              <div className="reel-item">
-                <div className="reel-video">
-                  <img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" alt="Cooking" />
-                  <div className="reel-overlay">
-                    <div className="play-button">▶</div>
-                  </div>
-                </div>
-                <div className="reel-info">
-                  <img src="https://via.placeholder.com/24" alt="Avatar" className="reel-avatar" />
-                  <span className="reel-username">@foodie_life</span>
-                </div>
-              </div>
-
-              <div className="reel-item">
-                <div className="reel-video">
-                  <img src="https://media.giphy.com/media/l2Je66zG6mAAZxgqI/giphy.gif" alt="Travel" />
-                  <div className="reel-overlay">
-                    <div className="play-button">▶</div>
-                  </div>
-                </div>
-                <div className="reel-info">
-                  <img src="https://via.placeholder.com/24" alt="Avatar" className="reel-avatar" />
-                  <span className="reel-username">@travel_vibes</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </main>

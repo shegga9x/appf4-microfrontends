@@ -1,37 +1,36 @@
-# FeedItemResourceApi
+# LikeResourceApi
 
 All URIs are relative to */services/msfeed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**createFeedItem**](#createfeeditem) | **POST** /api/feed-items | |
-|[**deleteFeedItem**](#deletefeeditem) | **DELETE** /api/feed-items/{id} | |
-|[**getAllFeedItems**](#getallfeeditems) | **GET** /api/feed-items | |
-|[**getFeedItem**](#getfeeditem) | **GET** /api/feed-items/{id} | |
-|[**partialUpdateFeedItem**](#partialupdatefeeditem) | **PATCH** /api/feed-items/{id} | |
-|[**searchFeedItems**](#searchfeeditems) | **GET** /api/feed-items/_search | |
-|[**updateFeedItem**](#updatefeeditem) | **PUT** /api/feed-items/{id} | |
+|[**createLike**](#createlike) | **POST** /api/likes | |
+|[**deleteLike**](#deletelike) | **DELETE** /api/likes/{id} | |
+|[**getAllLikes**](#getalllikes) | **GET** /api/likes | |
+|[**getLike**](#getlike) | **GET** /api/likes/{id} | |
+|[**partialUpdateLike**](#partialupdatelike) | **PATCH** /api/likes/{id} | |
+|[**updateLike**](#updatelike) | **PUT** /api/likes/{id} | |
 
-# **createFeedItem**
-> FeedItemDTO createFeedItem(feedItemDTO)
+# **createLike**
+> LikeDTO createLike(likeDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    LikeResourceApi,
     Configuration,
-    FeedItemDTO
+    LikeDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new LikeResourceApi(configuration);
 
-let feedItemDTO: FeedItemDTO; //
+let likeDTO: LikeDTO; //
 
-const { status, data } = await apiInstance.createFeedItem(
-    feedItemDTO
+const { status, data } = await apiInstance.createLike(
+    likeDTO
 );
 ```
 
@@ -39,12 +38,12 @@ const { status, data } = await apiInstance.createFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **likeDTO** | **LikeDTO**|  | |
 
 
 ### Return type
 
-**FeedItemDTO**
+**LikeDTO**
 
 ### Authorization
 
@@ -63,24 +62,24 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteFeedItem**
-> deleteFeedItem()
+# **deleteLike**
+> deleteLike()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    LikeResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new LikeResourceApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.deleteFeedItem(
+const { status, data } = await apiInstance.deleteLike(
     id
 );
 ```
@@ -113,26 +112,26 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAllFeedItems**
-> Array<FeedItemDTO> getAllFeedItems()
+# **getAllLikes**
+> Array<LikeDTO> getAllLikes()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    LikeResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new LikeResourceApi(configuration);
 
 let page: number; //Zero-based page index (0..N) (optional) (default to 0)
 let size: number; //The size of the page to be returned (optional) (default to 20)
 let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.getAllFeedItems(
+const { status, data } = await apiInstance.getAllLikes(
     page,
     size,
     sort
@@ -150,7 +149,7 @@ const { status, data } = await apiInstance.getAllFeedItems(
 
 ### Return type
 
-**Array<FeedItemDTO>**
+**Array<LikeDTO>**
 
 ### Authorization
 
@@ -169,24 +168,24 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getFeedItem**
-> FeedItemDTO getFeedItem()
+# **getLike**
+> LikeDTO getLike()
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    LikeResourceApi,
     Configuration
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new LikeResourceApi(configuration);
 
 let id: string; // (default to undefined)
 
-const { status, data } = await apiInstance.getFeedItem(
+const { status, data } = await apiInstance.getLike(
     id
 );
 ```
@@ -200,7 +199,7 @@ const { status, data } = await apiInstance.getFeedItem(
 
 ### Return type
 
-**FeedItemDTO**
+**LikeDTO**
 
 ### Authorization
 
@@ -219,28 +218,28 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **partialUpdateFeedItem**
-> FeedItemDTO partialUpdateFeedItem(feedItemDTO)
+# **partialUpdateLike**
+> LikeDTO partialUpdateLike(likeDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
+    LikeResourceApi,
     Configuration,
-    FeedItemDTO
+    LikeDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new LikeResourceApi(configuration);
 
 let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let likeDTO: LikeDTO; //
 
-const { status, data } = await apiInstance.partialUpdateFeedItem(
+const { status, data } = await apiInstance.partialUpdateLike(
     id,
-    feedItemDTO
+    likeDTO
 );
 ```
 
@@ -248,13 +247,13 @@ const { status, data } = await apiInstance.partialUpdateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **likeDTO** | **LikeDTO**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**LikeDTO**
 
 ### Authorization
 
@@ -273,87 +272,28 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **searchFeedItems**
-> Array<FeedItemDTO> searchFeedItems()
+# **updateLike**
+> LikeDTO updateLike(likeDTO)
 
 
 ### Example
 
 ```typescript
 import {
-    FeedItemResourceApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
-
-let query: string; // (default to undefined)
-let page: number; //Zero-based page index (0..N) (optional) (default to 0)
-let size: number; //The size of the page to be returned (optional) (default to 20)
-let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchFeedItems(
-    query,
-    page,
-    size,
-    sort
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **query** | [**string**] |  | defaults to undefined|
-| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
-| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
-| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
-
-
-### Return type
-
-**Array<FeedItemDTO>**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: */*
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **updateFeedItem**
-> FeedItemDTO updateFeedItem(feedItemDTO)
-
-
-### Example
-
-```typescript
-import {
-    FeedItemResourceApi,
+    LikeResourceApi,
     Configuration,
-    FeedItemDTO
+    LikeDTO
 } from './api';
 
 const configuration = new Configuration();
-const apiInstance = new FeedItemResourceApi(configuration);
+const apiInstance = new LikeResourceApi(configuration);
 
 let id: string; // (default to undefined)
-let feedItemDTO: FeedItemDTO; //
+let likeDTO: LikeDTO; //
 
-const { status, data } = await apiInstance.updateFeedItem(
+const { status, data } = await apiInstance.updateLike(
     id,
-    feedItemDTO
+    likeDTO
 );
 ```
 
@@ -361,13 +301,13 @@ const { status, data } = await apiInstance.updateFeedItem(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **feedItemDTO** | **FeedItemDTO**|  | |
+| **likeDTO** | **LikeDTO**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
 ### Return type
 
-**FeedItemDTO**
+**LikeDTO**
 
 ### Authorization
 
