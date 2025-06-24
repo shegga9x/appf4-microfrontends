@@ -1,13 +1,10 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import { log } from "@repo/logger";
-import { Link } from "@repo/ui/link";
-import { CounterButton } from "@repo/ui/counter-button";
 import { FeedItemResourceApi } from "@repo/api-client";
 import { Configuration } from "@repo/api-client";
 import type { FeedItemDTO } from "@repo/api-client";
-import { config } from 'dotenv';
+import { sharedCookies } from '@repo/shared-cookies';
 
 export const metadata = {
   title: "Store | Kitchen Sink",
@@ -21,13 +18,12 @@ export default function Store() {
   const [loading, setLoading] = useState(true);
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
   const [newComment, setNewComment] = useState<Record<number, string>>({});
-
   const config = new Configuration({
-    basePath: 'http://localhost:8080/services/msfeed',
-    // accessToken: "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJXeHBBeFg3MDVjUkxXOG5MWi1LWmNCX2ZFSlhBcnRxMDNKUW91Zk5uRTdvIn0.eyJleHAiOjE3NTA3MzQ0NTIsImlhdCI6MTc1MDczNDE1MiwianRpIjoiYWFjMzYzOTktOTY1Yi00ZjA4LTkwZTMtZWEwNzJkNjcyNzdiIiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5hcHBmNC5pby52bi9yZWFsbXMvamhpcHN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNGM5NzM4OTYtNTc2MS00MWZjLTgyMTctMDdjNWQxM2EwMDRiIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViX2FwcCIsInNpZCI6IjVkYTE3MjU3LTVlNzEtNGZkNi1iY2Y5LWYxNDhjMTg1N2RkYyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiIiwiaHR0cDovL2xvY2FsaG9zdDo4MDgwIiwiaHR0cHM6Ly9jb25zdWwuYXBwZjQuaW8udm4vKiIsImh0dHBzOi8vbXlzcWwuYXBwZjQuaW8udm4vKiIsIioiLCJodHRwczovL2thZmthLmFwcGY0LmlvLnZuLyoiLCJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJodHRwczovL3JlZGlzLmFwcGY0LmlvLnZuLyoiLCJodHRwOi8vbG9jYWxob3N0OjgxMDAiLCJodHRwczovL2thZmRyb3AuYXBwZjQuaW8udm4vKiIsImh0dHBzOi8vbG9jYWxob3N0OjgwODAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInJvbGVzIjpbIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl0sIm5hbWUiOiJBZG1pbiBBZG1pbmlzdHJhdG9yIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IkFkbWluaXN0cmF0b3IiLCJlbWFpbCI6ImFkbWluQGxvY2FsaG9zdCJ9.lb8hUiBDeUcG9gcVTre6XS9T7zZcWqKx1a8yKWm1VProRQPA_CgzGmrixh-41X4PdDOvv2yxQ0QVXXSOsS132CtZy2Ax7CKoHTOQw8zNf5F2dko4xlUUusDOSe8RrVHKXcgLj3-hKw4YQxR4QQrh3p9FzzsmxmfYfWqHtzDgxC-PAxmsGWRcAnGRVuahJxmqtWzlDGvmu1l6Tm3yevGyscBB9qSNt8fSmMs_OQN2ZZUVoRSlGWlSWloWUBOFLNscXx1DI4xhjwd-3zZBzwMVReQPWbOoUGqvx58EaXuuI82M_OgqQKFcV0mIWvzeFy_Fd2C2upUJ6h2FcCv0-F0YkA",
 
+    basePath: `${process.env.BACKEND_URL}${process.env.NEXT_PUBLIC_SERVICE_PATH_MSFEED}` || "https://appf24.io.vn",
     baseOptions: {
       headers: {
+        Authorization: `Bearer ${sharedCookies.getAuthTokens()?.accessToken || ''}`,
         // You can add additional headers here if needed
       },
     },

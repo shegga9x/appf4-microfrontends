@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import fs from 'fs';
 import path from 'path';
 
 export function loadEnv() {
@@ -7,27 +6,22 @@ export function loadEnv() {
     `.env.${process.env.NODE_ENV}.local`,
     `.env.local`,
     `.env.${process.env.NODE_ENV}`,
-    `.env`
+    `.env`,
   ];
 
   const rootDir = path.resolve(process.cwd(), '../../'); // monorepo root
-  let loadedFile = null;
+  let loadedFile: string | null = null;
 
   for (const filename of envFilesPriority) {
     const fullPath = path.join(rootDir, filename);
+    const result = dotenv.config({ path: fullPath });
 
-    if (fs.existsSync(fullPath)) {
-      const result = dotenv.config({ path: fullPath });
-
-      if (result.error) {
-        console.warn(`⚠️ Error loading ${filename}:`, result.error);
-      } else {
-        console.log(`✅ Loaded ENV variables from: ${filename}`);
-        console.log(`- NEXT_PUBLIC_DOCS_URL: ${process.env.NEXT_PUBLIC_DOCS_URL ?? 'Not defined'}`);
-        console.log(`- NEXT_PUBLIC_POST_URL: ${process.env.NEXT_PUBLIC_POST_URL ?? 'Not defined'}`);
-        loadedFile = filename;
-        break;
-      }
+    if (!result.error) {
+      loadedFile = filename;
+      console.log(`✅ Loaded ENV variables from: ${filename}`);
+      console.log(`- NEXT_PUBLIC_GATEWAY_URL: ${process.env.BACKEND_URL ?? 'Not defined'}`);
+      console.log(`- SERVICE_PATH_MSFEED: ${process.env.SERVICE_PATH_MSFEED ?? 'Not defined'}`);
+      break;
     }
   }
 
