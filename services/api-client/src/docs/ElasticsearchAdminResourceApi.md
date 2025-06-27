@@ -1,6 +1,6 @@
 # ElasticsearchAdminResourceApi
 
-All URIs are relative to */services/msfeed*
+All URIs are relative to */services/feed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|

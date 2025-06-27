@@ -5,7 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **number** |  | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
 **userId** | **string** |  | [default to undefined]
 **title** | **string** |  | [default to undefined]
@@ -18,7 +17,6 @@ Name | Type | Description | Notes
 import { ReelDTO } from './api';
 
 const instance: ReelDTO = {
-    version,
     id,
     userId,
     title,

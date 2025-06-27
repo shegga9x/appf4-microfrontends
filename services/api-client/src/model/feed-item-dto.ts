@@ -37,12 +37,51 @@ export interface FeedItemDTO {
      * @type {string}
      * @memberof FeedItemDTO
      */
-    'reelId': string;
+    'content'?: string;
     /**
      * 
      * @type {string}
      * @memberof FeedItemDTO
      */
-    'timestamp': string;
+    'imageUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemDTO
+     */
+    'videoUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemDTO
+     */
+    'visibility'?: FeedItemDTOVisibilityEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemDTO
+     */
+    'location'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemDTO
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedItemDTO
+     */
+    'updatedAt': string;
 }
+
+export const FeedItemDTOVisibilityEnum = {
+    Public: 'PUBLIC',
+    Private: 'PRIVATE',
+    FriendsOnly: 'FRIENDS_ONLY'
+} as const;
+
+export type FeedItemDTOVisibilityEnum = typeof FeedItemDTOVisibilityEnum[keyof typeof FeedItemDTOVisibilityEnum];
+
 

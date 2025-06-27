@@ -56,5 +56,17 @@ export interface CommentDTO {
      * @memberof CommentDTO
      */
     'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentDTO
+     */
+    'updatedAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentDTO
+     */
+    'mentions'?: string;
 }
 

@@ -23,12 +23,100 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import type { CommentDTO } from '../model';
+// @ts-ignore
+import type { CommentWithRedisUserDTO } from '../model';
 /**
  * CommentResourceApi - axios parameter creator
  * @export
  */
 export const CommentResourceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countByParentIdAndParentType1: async (parentId: string, parentType: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('countByParentIdAndParentType1', 'parentId', parentId)
+            // verify required parameter 'parentType' is not null or undefined
+            assertParamExists('countByParentIdAndParentType1', 'parentType', parentType)
+            const localVarPath = `/api/comments/countByParentIdAndParentType`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
+            if (parentType !== undefined) {
+                localVarQueryParameter['parentType'] = parentType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {Array<string>} parentIds 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countCommentsParentIdsAndParentType: async (parentIds: Array<string>, parentType: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentIds' is not null or undefined
+            assertParamExists('countCommentsParentIdsAndParentType', 'parentIds', parentIds)
+            // verify required parameter 'parentType' is not null or undefined
+            assertParamExists('countCommentsParentIdsAndParentType', 'parentType', parentType)
+            const localVarPath = `/api/comments/countCommentsParentIdsAndParentType`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentIds) {
+                localVarQueryParameter['parentIds'] = parentIds;
+            }
+
+            if (parentType !== undefined) {
+                localVarQueryParameter['parentType'] = parentType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {CommentDTO} commentDTO 
@@ -176,6 +264,64 @@ export const CommentResourceApiAxiosParamCreator = function (configuration?: Con
         },
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {number} [page] Zero-based page index (0..N)
+         * @param {number} [size] The size of the page to be returned
+         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCommentsByParent: async (parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('getCommentsByParent', 'parentId', parentId)
+            // verify required parameter 'parentType' is not null or undefined
+            assertParamExists('getCommentsByParent', 'parentType', parentType)
+            const localVarPath = `/api/comments/by-parent`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
+            if (parentType !== undefined) {
+                localVarQueryParameter['parentType'] = parentType;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
+
+            if (sort) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {CommentDTO} commentDTO 
          * @param {*} [options] Override http request option.
@@ -264,6 +410,32 @@ export const CommentResourceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async countByParentIdAndParentType1(parentId: string, parentType: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.countByParentIdAndParentType1(parentId, parentType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CommentResourceApi.countByParentIdAndParentType1']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {Array<string>} parentIds 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async countCommentsParentIdsAndParentType(parentIds: Array<string>, parentType: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.countCommentsParentIdsAndParentType(parentIds, parentType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CommentResourceApi.countCommentsParentIdsAndParentType']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {CommentDTO} commentDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -314,6 +486,22 @@ export const CommentResourceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {number} [page] Zero-based page index (0..N)
+         * @param {number} [size] The size of the page to be returned
+         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCommentsByParent(parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CommentWithRedisUserDTO>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCommentsByParent(parentId, parentType, page, size, sort, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CommentResourceApi.getCommentsByParent']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {CommentDTO} commentDTO 
          * @param {*} [options] Override http request option.
@@ -348,6 +536,26 @@ export const CommentResourceApiFp = function(configuration?: Configuration) {
 export const CommentResourceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = CommentResourceApiFp(configuration)
     return {
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countByParentIdAndParentType1(parentId: string, parentType: string, options?: RawAxiosRequestConfig): AxiosPromise<number> {
+            return localVarFp.countByParentIdAndParentType1(parentId, parentType, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {Array<string>} parentIds 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countCommentsParentIdsAndParentType(parentIds: Array<string>, parentType: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<number>> {
+            return localVarFp.countCommentsParentIdsAndParentType(parentIds, parentType, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {CommentDTO} commentDTO 
@@ -388,6 +596,19 @@ export const CommentResourceApiFactory = function (configuration?: Configuration
         },
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {number} [page] Zero-based page index (0..N)
+         * @param {number} [size] The size of the page to be returned
+         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCommentsByParent(parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<CommentWithRedisUserDTO>> {
+            return localVarFp.getCommentsByParent(parentId, parentType, page, size, sort, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {CommentDTO} commentDTO 
          * @param {*} [options] Override http request option.
@@ -416,6 +637,30 @@ export const CommentResourceApiFactory = function (configuration?: Configuration
  * @extends {BaseAPI}
  */
 export class CommentResourceApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} parentId 
+     * @param {string} parentType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommentResourceApi
+     */
+    public countByParentIdAndParentType1(parentId: string, parentType: string, options?: RawAxiosRequestConfig) {
+        return CommentResourceApiFp(this.configuration).countByParentIdAndParentType1(parentId, parentType, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {Array<string>} parentIds 
+     * @param {string} parentType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommentResourceApi
+     */
+    public countCommentsParentIdsAndParentType(parentIds: Array<string>, parentType: string, options?: RawAxiosRequestConfig) {
+        return CommentResourceApiFp(this.configuration).countCommentsParentIdsAndParentType(parentIds, parentType, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {CommentDTO} commentDTO 
@@ -460,6 +705,21 @@ export class CommentResourceApi extends BaseAPI {
      */
     public getComment(id: string, options?: RawAxiosRequestConfig) {
         return CommentResourceApiFp(this.configuration).getComment(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} parentId 
+     * @param {string} parentType 
+     * @param {number} [page] Zero-based page index (0..N)
+     * @param {number} [size] The size of the page to be returned
+     * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CommentResourceApi
+     */
+    public getCommentsByParent(parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
+        return CommentResourceApiFp(this.configuration).getCommentsByParent(parentId, parentType, page, size, sort, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

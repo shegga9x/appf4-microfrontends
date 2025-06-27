@@ -17,38 +17,26 @@
 /**
  * 
  * @export
- * @interface ReelDTO
+ * @interface RedisUserDTO
  */
-export interface ReelDTO {
+export interface RedisUserDTO {
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof RedisUserDTO
      */
-    'id': string;
+    'id'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof RedisUserDTO
      */
-    'userId': string;
+    'username'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ReelDTO
+     * @memberof RedisUserDTO
      */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReelDTO
-     */
-    'videoUrl': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReelDTO
-     */
-    'createdAt': string;
+    'userAvatar'?: string;
 }
 

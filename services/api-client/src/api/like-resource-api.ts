@@ -23,12 +23,100 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import type { LikeDTO } from '../model';
+// @ts-ignore
+import type { LikeWithRedisUserDTO } from '../model';
 /**
  * LikeResourceApi - axios parameter creator
  * @export
  */
 export const LikeResourceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countByParentIdAndParentType: async (parentId: string, parentType: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('countByParentIdAndParentType', 'parentId', parentId)
+            // verify required parameter 'parentType' is not null or undefined
+            assertParamExists('countByParentIdAndParentType', 'parentType', parentType)
+            const localVarPath = `/api/likes/countByParentIdAndParentType`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
+            if (parentType !== undefined) {
+                localVarQueryParameter['parentType'] = parentType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {Array<string>} parentIds 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countLikesParentIdsAndParentType: async (parentIds: Array<string>, parentType: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentIds' is not null or undefined
+            assertParamExists('countLikesParentIdsAndParentType', 'parentIds', parentIds)
+            // verify required parameter 'parentType' is not null or undefined
+            assertParamExists('countLikesParentIdsAndParentType', 'parentType', parentType)
+            const localVarPath = `/api/likes/countLikesParentIdsAndParentType`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentIds) {
+                localVarQueryParameter['parentIds'] = parentIds;
+            }
+
+            if (parentType !== undefined) {
+                localVarQueryParameter['parentType'] = parentType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {LikeDTO} likeDTO 
@@ -176,6 +264,64 @@ export const LikeResourceApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {number} [page] Zero-based page index (0..N)
+         * @param {number} [size] The size of the page to be returned
+         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLikesByParent: async (parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('getLikesByParent', 'parentId', parentId)
+            // verify required parameter 'parentType' is not null or undefined
+            assertParamExists('getLikesByParent', 'parentType', parentType)
+            const localVarPath = `/api/likes/by-parent`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
+            if (parentType !== undefined) {
+                localVarQueryParameter['parentType'] = parentType;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
+
+            if (sort) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
@@ -264,6 +410,32 @@ export const LikeResourceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async countByParentIdAndParentType(parentId: string, parentType: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.countByParentIdAndParentType(parentId, parentType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.countByParentIdAndParentType']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {Array<string>} parentIds 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async countLikesParentIdsAndParentType(parentIds: Array<string>, parentType: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.countLikesParentIdsAndParentType(parentIds, parentType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.countLikesParentIdsAndParentType']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -314,6 +486,22 @@ export const LikeResourceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {number} [page] Zero-based page index (0..N)
+         * @param {number} [size] The size of the page to be returned
+         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getLikesByParent(parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LikeWithRedisUserDTO>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLikesByParent(parentId, parentType, page, size, sort, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.getLikesByParent']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
@@ -348,6 +536,26 @@ export const LikeResourceApiFp = function(configuration?: Configuration) {
 export const LikeResourceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = LikeResourceApiFp(configuration)
     return {
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countByParentIdAndParentType(parentId: string, parentType: string, options?: RawAxiosRequestConfig): AxiosPromise<number> {
+            return localVarFp.countByParentIdAndParentType(parentId, parentType, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {Array<string>} parentIds 
+         * @param {string} parentType 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        countLikesParentIdsAndParentType(parentIds: Array<string>, parentType: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<number>> {
+            return localVarFp.countLikesParentIdsAndParentType(parentIds, parentType, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {LikeDTO} likeDTO 
@@ -388,6 +596,19 @@ export const LikeResourceApiFactory = function (configuration?: Configuration, b
         },
         /**
          * 
+         * @param {string} parentId 
+         * @param {string} parentType 
+         * @param {number} [page] Zero-based page index (0..N)
+         * @param {number} [size] The size of the page to be returned
+         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLikesByParent(parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<LikeWithRedisUserDTO>> {
+            return localVarFp.getLikesByParent(parentId, parentType, page, size, sort, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {LikeDTO} likeDTO 
          * @param {*} [options] Override http request option.
@@ -416,6 +637,30 @@ export const LikeResourceApiFactory = function (configuration?: Configuration, b
  * @extends {BaseAPI}
  */
 export class LikeResourceApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} parentId 
+     * @param {string} parentType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LikeResourceApi
+     */
+    public countByParentIdAndParentType(parentId: string, parentType: string, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).countByParentIdAndParentType(parentId, parentType, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {Array<string>} parentIds 
+     * @param {string} parentType 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LikeResourceApi
+     */
+    public countLikesParentIdsAndParentType(parentIds: Array<string>, parentType: string, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).countLikesParentIdsAndParentType(parentIds, parentType, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {LikeDTO} likeDTO 
@@ -460,6 +705,21 @@ export class LikeResourceApi extends BaseAPI {
      */
     public getLike(id: string, options?: RawAxiosRequestConfig) {
         return LikeResourceApiFp(this.configuration).getLike(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} parentId 
+     * @param {string} parentType 
+     * @param {number} [page] Zero-based page index (0..N)
+     * @param {number} [size] The size of the page to be returned
+     * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LikeResourceApi
+     */
+    public getLikesByParent(parentId: string, parentType: string, page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).getLikesByParent(parentId, parentType, page, size, sort, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

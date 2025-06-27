@@ -1,15 +1,124 @@
 # CommentResourceApi
 
-All URIs are relative to */services/msfeed*
+All URIs are relative to */services/feed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
+|[**countByParentIdAndParentType1**](#countbyparentidandparenttype1) | **GET** /api/comments/countByParentIdAndParentType | |
+|[**countCommentsParentIdsAndParentType**](#countcommentsparentidsandparenttype) | **GET** /api/comments/countCommentsParentIdsAndParentType | |
 |[**createComment**](#createcomment) | **POST** /api/comments | |
 |[**deleteComment**](#deletecomment) | **DELETE** /api/comments/{id} | |
 |[**getAllComments**](#getallcomments) | **GET** /api/comments | |
 |[**getComment**](#getcomment) | **GET** /api/comments/{id} | |
+|[**getCommentsByParent**](#getcommentsbyparent) | **GET** /api/comments/by-parent | |
 |[**partialUpdateComment**](#partialupdatecomment) | **PATCH** /api/comments/{id} | |
 |[**updateComment**](#updatecomment) | **PUT** /api/comments/{id} | |
+
+# **countByParentIdAndParentType1**
+> number countByParentIdAndParentType1()
+
+
+### Example
+
+```typescript
+import {
+    CommentResourceApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new CommentResourceApi(configuration);
+
+let parentId: string; // (default to undefined)
+let parentType: string; // (default to undefined)
+
+const { status, data } = await apiInstance.countByParentIdAndParentType1(
+    parentId,
+    parentType
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **parentId** | [**string**] |  | defaults to undefined|
+| **parentType** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **countCommentsParentIdsAndParentType**
+> Array<number> countCommentsParentIdsAndParentType()
+
+
+### Example
+
+```typescript
+import {
+    CommentResourceApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new CommentResourceApi(configuration);
+
+let parentIds: Array<string>; // (default to undefined)
+let parentType: string; // (default to undefined)
+
+const { status, data } = await apiInstance.countCommentsParentIdsAndParentType(
+    parentIds,
+    parentType
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **parentIds** | **Array&lt;string&gt;** |  | defaults to undefined|
+| **parentType** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**Array<number>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createComment**
 > CommentDTO createComment(commentDTO)
@@ -200,6 +309,68 @@ const { status, data } = await apiInstance.getComment(
 ### Return type
 
 **CommentDTO**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCommentsByParent**
+> Array<CommentWithRedisUserDTO> getCommentsByParent()
+
+
+### Example
+
+```typescript
+import {
+    CommentResourceApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new CommentResourceApi(configuration);
+
+let parentId: string; // (default to undefined)
+let parentType: string; // (default to undefined)
+let page: number; //Zero-based page index (0..N) (optional) (default to 0)
+let size: number; //The size of the page to be returned (optional) (default to 20)
+let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.getCommentsByParent(
+    parentId,
+    parentType,
+    page,
+    size,
+    sort
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **parentId** | [**string**] |  | defaults to undefined|
+| **parentType** | [**string**] |  | defaults to undefined|
+| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
+| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
+| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
+
+
+### Return type
+
+**Array<CommentWithRedisUserDTO>**
 
 ### Authorization
 

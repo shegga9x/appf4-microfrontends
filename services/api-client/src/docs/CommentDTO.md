@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **userId** | **string** |  | [default to undefined]
 **content** | **string** |  | [optional] [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
+**updatedAt** | **string** |  | [default to undefined]
+**mentions** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -24,6 +26,8 @@ const instance: CommentDTO = {
     userId,
     content,
     createdAt,
+    updatedAt,
+    mentions,
 };
 ```
 

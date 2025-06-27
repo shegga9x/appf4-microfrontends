@@ -56,5 +56,11 @@ export interface UserDTO {
      * @memberof UserDTO
      */
     'keycloakUserId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDTO
+     */
+    'userAvatar'?: string;
 }
 

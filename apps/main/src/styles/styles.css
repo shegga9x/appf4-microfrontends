@@ -222,8 +222,8 @@ body {
   left: 0;
 }
 
-/* Create Post */
-.create-post {
+/* Create feed */
+.create-feed {
   background: white;
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -231,20 +231,20 @@ body {
   padding: 16px;
 }
 
-.create-post-top {
+.create-feed-top {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.create-post-top img {
+.create-feed-top img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 
-.create-post-top input {
+.create-feed-top input {
   flex: 1;
   background: #f0f2f5;
   border: none;
@@ -254,14 +254,14 @@ body {
   font-size: 16px;
 }
 
-.create-post-buttons {
+.create-feed-buttons {
   display: flex;
   justify-content: space-around;
   border-top: 1px solid #e4e6ea;
   padding-top: 12px;
 }
 
-.post-option {
+.feed-option {
   background: none;
   border: none;
   padding: 8px 16px;
@@ -275,69 +275,69 @@ body {
   transition: background-color 0.2s;
 }
 
-.post-option:hover {
+.feed-option:hover {
   background: #f0f2f5;
 }
 
-/* Posts Feed */
-.posts-feed {
+/* feeds Feed */
+.feeds-feed {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.post {
+.feed {
   background: white;
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 16px;
 }
 
-.post-header {
+.feed-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 }
 
-.post-avatar {
+.feed-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 
-.post-info h3 {
+.feed-info h3 {
   margin: 0;
   font-size: 15px;
   color: #050505;
   font-weight: 600;
 }
 
-.post-time {
+.feed-time {
   color: #65676b;
   font-size: 13px;
 }
 
-.post-options {
+.feed-options {
   margin-left: auto;
   cursor: pointer;
   color: #65676b;
   font-size: 20px;
 }
 
-.post-content p {
+.feed-content p {
   margin: 0 0 12px 0;
   line-height: 1.4;
   color: #050505;
 }
 
-.post-image {
+.feed-image {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 12px;
 }
 
-.post-stats {
+.feed-stats {
   display: flex;
   justify-content: space-between;
   color: #65676b;
@@ -347,7 +347,7 @@ body {
   border-bottom: 1px solid #e4e6ea;
 }
 
-.post-actions {
+.feed-actions {
   display: flex;
   justify-content: space-around;
 }

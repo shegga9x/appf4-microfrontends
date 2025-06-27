@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **passwordHash** | **string** |  | [default to undefined]
 **createdAt** | **string** |  | [default to undefined]
 **keycloakUserId** | **string** |  | [default to undefined]
+**userAvatar** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -24,6 +25,7 @@ const instance: UserDTO = {
     passwordHash,
     createdAt,
     keycloakUserId,
+    userAvatar,
 };
 ```
 

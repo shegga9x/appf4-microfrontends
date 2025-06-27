@@ -1,6 +1,6 @@
 # KeycloakUserResourceApi
 
-All URIs are relative to */services/msfeed*
+All URIs are relative to */services/feed*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
@@ -127,24 +127,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new KeycloakUserResourceApi(configuration);
 
-let page: number; //Zero-based page index (0..N) (optional) (default to 0)
-let size: number; //The size of the page to be returned (optional) (default to 20)
-let sort: Array<string>; //Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.getAllKeycloakUsers(
-    page,
-    size,
-    sort
-);
+const { status, data } = await apiInstance.getAllKeycloakUsers();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **page** | [**number**] | Zero-based page index (0..N) | (optional) defaults to 0|
-| **size** | [**number**] | The size of the page to be returned | (optional) defaults to 20|
-| **sort** | **Array&lt;string&gt;** | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type

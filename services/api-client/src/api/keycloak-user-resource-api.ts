@@ -99,13 +99,10 @@ export const KeycloakUserResourceApiAxiosParamCreator = function (configuration?
         },
         /**
          * 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllKeycloakUsers: async (page?: number, size?: number, sort?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAllKeycloakUsers: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/keycloak-users`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -117,18 +114,6 @@ export const KeycloakUserResourceApiAxiosParamCreator = function (configuration?
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
-
-            if (sort) {
-                localVarQueryParameter['sort'] = sort;
-            }
 
 
     
@@ -288,14 +273,11 @@ export const KeycloakUserResourceApiFp = function(configuration?: Configuration)
         },
         /**
          * 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllKeycloakUsers(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<KeycloakUserDTO>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllKeycloakUsers(page, size, sort, options);
+        async getAllKeycloakUsers(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<KeycloakUserDTO>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllKeycloakUsers(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['KeycloakUserResourceApi.getAllKeycloakUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -368,14 +350,11 @@ export const KeycloakUserResourceApiFactory = function (configuration?: Configur
         },
         /**
          * 
-         * @param {number} [page] Zero-based page index (0..N)
-         * @param {number} [size] The size of the page to be returned
-         * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllKeycloakUsers(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<Array<KeycloakUserDTO>> {
-            return localVarFp.getAllKeycloakUsers(page, size, sort, options).then((request) => request(axios, basePath));
+        getAllKeycloakUsers(options?: RawAxiosRequestConfig): AxiosPromise<Array<KeycloakUserDTO>> {
+            return localVarFp.getAllKeycloakUsers(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -440,15 +419,12 @@ export class KeycloakUserResourceApi extends BaseAPI {
 
     /**
      * 
-     * @param {number} [page] Zero-based page index (0..N)
-     * @param {number} [size] The size of the page to be returned
-     * @param {Array<string>} [sort] Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof KeycloakUserResourceApi
      */
-    public getAllKeycloakUsers(page?: number, size?: number, sort?: Array<string>, options?: RawAxiosRequestConfig) {
-        return KeycloakUserResourceApiFp(this.configuration).getAllKeycloakUsers(page, size, sort, options).then((request) => request(this.axios, this.basePath));
+    public getAllKeycloakUsers(options?: RawAxiosRequestConfig) {
+        return KeycloakUserResourceApiFp(this.configuration).getAllKeycloakUsers(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

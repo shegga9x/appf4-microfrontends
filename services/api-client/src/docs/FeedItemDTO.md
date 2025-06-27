@@ -7,8 +7,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** |  | [default to undefined]
 **userId** | **string** |  | [default to undefined]
-**reelId** | **string** |  | [default to undefined]
-**timestamp** | **string** |  | [default to undefined]
+**content** | **string** |  | [optional] [default to undefined]
+**imageUrl** | **string** |  | [optional] [default to undefined]
+**videoUrl** | **string** |  | [optional] [default to undefined]
+**visibility** | **string** |  | [optional] [default to undefined]
+**location** | **string** |  | [optional] [default to undefined]
+**createdAt** | **string** |  | [default to undefined]
+**updatedAt** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -18,8 +23,13 @@ import { FeedItemDTO } from './api';
 const instance: FeedItemDTO = {
     id,
     userId,
-    reelId,
-    timestamp,
+    content,
+    imageUrl,
+    videoUrl,
+    visibility,
+    location,
+    createdAt,
+    updatedAt,
 };
 ```
 

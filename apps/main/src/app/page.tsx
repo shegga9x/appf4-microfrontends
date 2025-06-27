@@ -5,14 +5,48 @@
 // };
 import { useRequireProfile } from "@repo/zustand";
 import { useRouter } from "next/navigation";
-import Store from "./store-client"; // rename your current file to store-client.tsx
+import MainFeed from '../components/MainFeed';
+import { useFeedData } from '../features/hooks/useFeedData';
 
 export default function StorePage() {
   const router = useRouter();
   const { profile, loading } = useRequireProfile(router);
+
+  const {
+    feeds,
+    reels,
+    showComments,
+    newComment,
+    toggleComments,
+    handleCommentChange
+  } = useFeedData();
+
   if (loading || !profile) {
     return <p>Loading...</p>; // show spinner or skeleton while redirecting
   }
 
-  return <Store />;
+  if (loading) {
+    return (
+      <div className="loading-spinner" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontSize: '18px'
+      }}>
+        Loading feed...
+      </div>
+    );
+  }
+
+  return (
+    <MainFeed
+      feeds={feeds}
+      reels={reels}
+      showComments={showComments}
+      newComment={newComment}
+      toggleComments={toggleComments}
+      handleCommentChange={handleCommentChange}
+    />
+  );
 }
