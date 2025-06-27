@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuthStore } from '@repo/zustand';
 
 export default function Login() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const login = useAuthStore(state => state.login);
   const loading = useAuthStore(state => state.loading);
@@ -16,8 +17,15 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isChecking, setIsChecking] = useState(true);
+  const [registrationMessage, setRegistrationMessage] = useState('');
 
   useEffect(() => {
+    // Check for registration success message
+    const message = searchParams?.get('message');
+    if (message) {
+      setRegistrationMessage(message);
+    }
+    
     if (initialized) {
       setIsChecking(false);
       if (profile) {
@@ -25,7 +33,7 @@ export default function Login() {
         router.push('/');
       }
     }
-  }, [initialized, profile, router]);
+  }, [initialized, profile, router, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +115,19 @@ export default function Login() {
                 />
               </div>
               
+              {registrationMessage && (
+                <div style={{ 
+                  backgroundColor: '#d4edda', 
+                  color: '#155724', 
+                  padding: '10px', 
+                  borderRadius: '4px', 
+                  marginBottom: '15px',
+                  border: '1px solid #c3e6cb'
+                }}>
+                  {registrationMessage}
+                </div>
+              )}
+
               {error && (
                 <div className="error-message">
                   {error}
@@ -128,7 +149,10 @@ export default function Login() {
 
             <div className="divider"></div>
 
-            <button className="create-account-button">
+            <button 
+              onClick={() => router.push('/register')}
+              className="create-account-button"
+            >
               Create New Account
             </button>
           </div>

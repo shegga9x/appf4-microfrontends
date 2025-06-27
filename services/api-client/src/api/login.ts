@@ -27,6 +27,7 @@ export async function login(username: string, password: string) {
         throw error;
     }
 }
+
 export async function refreshToken(refreshToken: string) {
     try {
         const params = new URLSearchParams();

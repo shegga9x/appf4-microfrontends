@@ -7,7 +7,7 @@ import { useRequireProfile } from "@repo/zustand";
 import { useRouter } from "next/navigation";
 import MainFeed from '../components/MainFeed';
 import { useFeedData } from '../features/hooks/useFeedData';
-
+import LoadingSpinner from '../components/LoadingSpinner';
 export default function StorePage() {
   const router = useRouter();
   const { profile, loading } = useRequireProfile(router);
@@ -15,17 +15,19 @@ export default function StorePage() {
   const {
     feeds,
     reels,
+    loading: feedsLoading,
     showComments,
     newComment,
+    loadingComments,
     toggleComments,
     handleCommentChange
   } = useFeedData();
 
   if (loading || !profile) {
-    return <p>Loading...</p>; // show spinner or skeleton while redirecting
+    return <p>Loading...</p>;
   }
 
-  if (loading) {
+  if (feedsLoading) {
     return (
       <div className="loading-spinner" style={{
         display: 'flex',
@@ -34,7 +36,8 @@ export default function StorePage() {
         height: '100vh',
         fontSize: '18px'
       }}>
-        Loading feed...
+        <LoadingSpinner size="large" color="#1877f2" />
+        <div style={{ marginLeft: '10px' }}>Loading feed...</div>
       </div>
     );
   }
@@ -45,6 +48,7 @@ export default function StorePage() {
       reels={reels}
       showComments={showComments}
       newComment={newComment}
+      loadingComments={loadingComments}
       toggleComments={toggleComments}
       handleCommentChange={handleCommentChange}
     />

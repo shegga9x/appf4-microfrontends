@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchFeedItems, updateFeedContent ,showComment} from '../feed/feedService';
+import { fetchFeedItems, updateFeedContent, showComment} from '../feed/feedService';
 import { getHardcodedReels, getFallbackReels } from '../reels/reelsService';
 import type {
     FeedItemDTO,
@@ -14,6 +14,7 @@ export const useFeedData = () => {
     const [newComment, setNewComment] = useState<Record<string, string>>({});
     const [feedIdBeingEdited, setFeedIdBeingEdited] = useState<string | null>(null);
     const [editedContent, setEditedContent] = useState<string>('');
+    const [loadingComments, setLoadingComments] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -63,10 +64,14 @@ export const useFeedData = () => {
         // If we're showing comments (toggling from hidden to visible), fetch them
         if (!isCurrentlyShowing) {
             try {
+                setLoadingComments(prev => ({ ...prev, [feedId]: true }));
+                
                 const updatedFeeds = await showComment(feeds, feedId, '');
                 setFeeds(updatedFeeds);
             } catch (error) {
                 console.error('Error fetching comments:', error);
+            } finally {
+                setLoadingComments(prev => ({ ...prev, [feedId]: false }));
             }
         }
     };
@@ -83,6 +88,7 @@ export const useFeedData = () => {
         newComment,
         feedIdBeingEdited,
         editedContent,
+        loadingComments,
         setEditedContent,
         handleEditFeed,
         handleUpdateFeed,

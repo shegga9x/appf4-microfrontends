@@ -5,9 +5,10 @@ export const showComment = async (feeds: FeedWithOtherDTO[], feedId: string, com
     try {
         // Fetch updated comments for the specific feed
         const comments = await fetchCommentItems(feedId);
-        
+
         return feeds.map(feed => {
             if (String(feed.feedItem?.id) === feedId) {
+                console.log('Fetched comments:', feed);
                 return {
                     ...feed,
                     feedItem: {
@@ -17,7 +18,6 @@ export const showComment = async (feeds: FeedWithOtherDTO[], feedId: string, com
                     commentCount: comments.length
                 };
             }
-            console.log('Fetched comments:', feed);
 
             return feed;
         });
