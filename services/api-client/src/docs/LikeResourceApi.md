@@ -1,18 +1,73 @@
 # LikeResourceApi
 
-All URIs are relative to */services/feed*
+All URIs are relative to */services/commentlike*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
+|[**checkLikeExists**](#checklikeexists) | **GET** /api/likes/exists | |
 |[**countByParentIdAndParentType**](#countbyparentidandparenttype) | **GET** /api/likes/countByParentIdAndParentType | |
 |[**countLikesParentIdsAndParentType**](#countlikesparentidsandparenttype) | **GET** /api/likes/countLikesParentIdsAndParentType | |
 |[**createLike**](#createlike) | **POST** /api/likes | |
 |[**deleteLike**](#deletelike) | **DELETE** /api/likes/{id} | |
+|[**deleteLikeByParentIdAndUserId**](#deletelikebyparentidanduserid) | **DELETE** /api/likes/by-parent-and-user | |
 |[**getAllLikes**](#getalllikes) | **GET** /api/likes | |
 |[**getLike**](#getlike) | **GET** /api/likes/{id} | |
 |[**getLikesByParent**](#getlikesbyparent) | **GET** /api/likes/by-parent | |
 |[**partialUpdateLike**](#partialupdatelike) | **PATCH** /api/likes/{id} | |
 |[**updateLike**](#updatelike) | **PUT** /api/likes/{id} | |
+
+# **checkLikeExists**
+> boolean checkLikeExists()
+
+
+### Example
+
+```typescript
+import {
+    LikeResourceApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new LikeResourceApi(configuration);
+
+let parentId: string; // (default to undefined)
+let userId: string; // (default to undefined)
+
+const { status, data } = await apiInstance.checkLikeExists(
+    parentId,
+    userId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **parentId** | [**string**] |  | defaults to undefined|
+| **userId** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**boolean**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **countByParentIdAndParentType**
 > number countByParentIdAndParentType()
@@ -198,6 +253,59 @@ const { status, data } = await apiInstance.deleteLike(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteLikeByParentIdAndUserId**
+> deleteLikeByParentIdAndUserId()
+
+
+### Example
+
+```typescript
+import {
+    LikeResourceApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new LikeResourceApi(configuration);
+
+let parentId: string; // (default to undefined)
+let userId: string; // (default to undefined)
+
+const { status, data } = await apiInstance.deleteLikeByParentIdAndUserId(
+    parentId,
+    userId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **parentId** | [**string**] |  | defaults to undefined|
+| **userId** | [**string**] |  | defaults to undefined|
 
 
 ### Return type

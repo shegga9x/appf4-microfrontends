@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Ms Feed API
- * Ms Feed API documentation
+ * Ms Commentlike API
+ * Ms Commentlike API documentation
  *
  * The version of the OpenAPI document: 0.0.1
  * Contact: 
@@ -31,6 +31,49 @@ import type { LikeWithRedisUserDTO } from '../model';
  */
 export const LikeResourceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkLikeExists: async (parentId: string, userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('checkLikeExists', 'parentId', parentId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('checkLikeExists', 'userId', userId)
+            const localVarPath = `/api/likes/exists`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {string} parentId 
@@ -173,6 +216,49 @@ export const LikeResourceApiAxiosParamCreator = function (configuration?: Config
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLikeByParentIdAndUserId: async (parentId: string, userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('deleteLikeByParentIdAndUserId', 'parentId', parentId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('deleteLikeByParentIdAndUserId', 'userId', userId)
+            const localVarPath = `/api/likes/by-parent-and-user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
 
 
     
@@ -411,6 +497,19 @@ export const LikeResourceApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} parentId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async checkLikeExists(parentId: string, userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkLikeExists(parentId, userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.checkLikeExists']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} parentId 
          * @param {string} parentType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -456,6 +555,19 @@ export const LikeResourceApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteLike(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.deleteLike']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteLikeByParentIdAndUserId(parentId: string, userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteLikeByParentIdAndUserId(parentId, userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LikeResourceApi.deleteLikeByParentIdAndUserId']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -539,6 +651,16 @@ export const LikeResourceApiFactory = function (configuration?: Configuration, b
         /**
          * 
          * @param {string} parentId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkLikeExists(parentId: string, userId: string, options?: RawAxiosRequestConfig): AxiosPromise<boolean> {
+            return localVarFp.checkLikeExists(parentId, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} parentId 
          * @param {string} parentType 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -573,6 +695,16 @@ export const LikeResourceApiFactory = function (configuration?: Configuration, b
          */
         deleteLike(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteLike(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} parentId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLikeByParentIdAndUserId(parentId: string, userId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteLikeByParentIdAndUserId(parentId, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -640,6 +772,18 @@ export class LikeResourceApi extends BaseAPI {
     /**
      * 
      * @param {string} parentId 
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LikeResourceApi
+     */
+    public checkLikeExists(parentId: string, userId: string, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).checkLikeExists(parentId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} parentId 
      * @param {string} parentType 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -681,6 +825,18 @@ export class LikeResourceApi extends BaseAPI {
      */
     public deleteLike(id: string, options?: RawAxiosRequestConfig) {
         return LikeResourceApiFp(this.configuration).deleteLike(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} parentId 
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LikeResourceApi
+     */
+    public deleteLikeByParentIdAndUserId(parentId: string, userId: string, options?: RawAxiosRequestConfig) {
+        return LikeResourceApiFp(this.configuration).deleteLikeByParentIdAndUserId(parentId, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

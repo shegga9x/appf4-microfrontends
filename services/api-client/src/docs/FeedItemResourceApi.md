@@ -1,6 +1,6 @@
 # FeedItemResourceApi
 
-All URIs are relative to */services/feed*
+All URIs are relative to */services/commentlike*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|

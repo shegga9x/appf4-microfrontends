@@ -14,8 +14,13 @@ interface MainFeedProps {
   showComments: Record<string, boolean>;
   newComment: Record<string, string>;
   loadingComments: Record<string, boolean>;
+  submittingComment: Record<string, boolean>;
+  likedFeeds: Record<string, boolean>;
+  likingFeed: Record<string, boolean>;
   toggleComments: (feedId: string) => void;
+  handleAddComment: (feedId: string) => void;
   handleCommentChange: (feedId: string, value: string) => void;
+  handleToggleLike: (feedId: string) => void;
 }
 
 export default function MainFeed({
@@ -24,13 +29,18 @@ export default function MainFeed({
   showComments,
   newComment,
   loadingComments,
+  submittingComment,
+  likedFeeds,
+  likingFeed,
   toggleComments,
-  handleCommentChange
+  handleAddComment,
+  handleCommentChange,
+  handleToggleLike
 }: MainFeedProps) {
   return (
     <div className="app-container">
       <Header />
-      
+
       <main className="main-feed">
         {/* Story Section */}
         <div className="stories-container">
@@ -99,13 +109,16 @@ export default function MainFeed({
             const safeSharesCount = feed.shareCount || 0;
             const feedId = String(feed.feedItem?.id);
             const isLoadingComments = loadingComments[feedId];
+            const isSubmittingComment = submittingComment[feedId];
+            const isLiked = likedFeeds[feedId] || false;
+            const isLiking = likingFeed[feedId] || false;
 
             return (
               <div key={feed.feedItem?.id} className="feed">
                 <div className="feed-header">
-                  <img src={feed.userAvatar || 'https://via.placeholder.com/40'} alt={feed.userName || 'User'} className="feed-avatar" />
+                  <img src={feed.redisUserDTO?.userAvatar || 'https://via.placeholder.com/40'} alt={feed.redisUserDTO?.username || 'User'} className="feed-avatar" />
                   <div className="feed-info">
-                    <h3>{feed.userName || 'Anonymous User'}</h3>
+                    <h3>{feed.redisUserDTO?.username || 'Anonymous User'}</h3>
                     <span className="feed-time">
                       {feed.feedItem?.updatedAt ? new Date(feed.feedItem?.updatedAt).toLocaleString() : 'Just now'}
                     </span>
@@ -122,15 +135,33 @@ export default function MainFeed({
                   )}
                 </div>
                 <div className="feed-stats">
-                  <span>👍 {safeLikesCount}</span>
+                  <span className={`like-stat ${isLiked ? 'liked' : ''}`}>
+                    👍 {safeLikesCount}
+                  </span>
                   <span>{safeCommentsCount} comments • {safeSharesCount} shares</span>
                 </div>
                 <div className="feed-actions">
-                  <button className="action-btn">
-                    <span>👍</span> Like
+                  <button
+                    className={`action-btn like-btn ${isLiked ? 'liked' : ''}`}
+                    onClick={() => handleToggleLike(feedId)}
+                    disabled={isLiking}
+                  >
+                    {isLiking ? (
+                      <>
+                        <LoadingSpinner size="small" />
+                        <span style={{ marginLeft: '4px' }}>
+                          {isLiked ? 'Unliking...' : 'Liking...'}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{isLiked ? '👍' : '👍'}</span>
+                        <span>{isLiked ? 'Liked' : 'Like'}</span>
+                      </>
+                    )}
                   </button>
-                  <button 
-                    className="action-btn" 
+                  <button
+                    className="action-btn"
                     onClick={() => toggleComments(feedId)}
                     disabled={isLoadingComments}
                   >
@@ -188,13 +219,28 @@ export default function MainFeed({
                               placeholder="Write a comment..."
                               value={newComment[feedId] || ''}
                               onChange={(e) => handleCommentChange(feedId, e.target.value)}
+                              onKeyPress={(e) => {
+                                if (e.key === 'Enter' && !e.shiftKey && !isSubmittingComment) {
+                                  e.preventDefault();
+                                  handleAddComment(feedId);
+                                }
+                              }}
                               className="comment-input"
+                              disabled={isSubmittingComment}
                             />
                             <button
+                              onClick={() => handleAddComment(feedId)}
                               className="comment-submit"
-                              disabled={!newComment[feedId]?.trim()}
+                              disabled={!newComment[feedId]?.trim() || isSubmittingComment}
                             >
-                              Post
+                              {isSubmittingComment ? (
+                                <>
+                                  <LoadingSpinner size="small" />
+                                  <span style={{ marginLeft: '4px' }}>Posting...</span>
+                                </>
+                              ) : (
+                                'Post'
+                              )}
                             </button>
                           </div>
                         </div>
@@ -255,6 +301,24 @@ export default function MainFeed({
           font-size: 14px;
         }
 
+        .like-stat.liked {
+          color: #1877f2;
+          font-weight: 600;
+        }
+
+        .like-btn.liked {
+          color: #1877f2;
+          background-color: rgba(24, 119, 242, 0.1);
+        }
+
+        .like-btn.liked:hover:not(:disabled) {
+          background-color: rgba(24, 119, 242, 0.2);
+        }
+
+        .action-btn.like-btn {
+          transition: all 0.2s ease;
+        }
+
         .action-btn:disabled {
           opacity: 0.6;
           cursor: not-allowed;
@@ -265,6 +329,19 @@ export default function MainFeed({
           align-items: center;
           justify-content: center;
           gap: 4px;
+          padding: 8px 16px;
+          border: none;
+          background: transparent;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 15px;
+          font-weight: 600;
+          color: #65676b;
+          transition: background-color 0.2s;
+        }
+
+        .action-btn:hover:not(:disabled) {
+          background-color: #f0f2f5;
         }
 
         @media (max-width: 768px) {

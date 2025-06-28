@@ -19,8 +19,13 @@ export default function StorePage() {
     showComments,
     newComment,
     loadingComments,
+    submittingComment,
+    likedFeeds,
+    likingFeed,
     toggleComments,
-    handleCommentChange
+    handleAddComment,
+    handleCommentChange,
+    handleToggleLike
   } = useFeedData();
 
   if (loading || !profile) {
@@ -49,8 +54,13 @@ export default function StorePage() {
       showComments={showComments}
       newComment={newComment}
       loadingComments={loadingComments}
+      submittingComment={submittingComment}
+      likedFeeds={likedFeeds}
+      likingFeed={likingFeed}
       toggleComments={toggleComments}
+      handleAddComment={handleAddComment}
       handleCommentChange={handleCommentChange}
+      handleToggleLike={handleToggleLike}
     />
   );
 }

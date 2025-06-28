@@ -14,10 +14,10 @@ class SharedCookieManager {
 
   constructor() {
     this.isProduction = process.env.NODE_ENV === 'production';
-    
+
     // In production, use your main domain (e.g., '.yourdomain.com')
     // In development, use localhost
-    this.domain = this.isProduction 
+    this.domain = this.isProduction
       ? process.env.NEXT_PUBLIC_COOKIE_DOMAIN || '.appf4s.io.vn'
       : 'localhost';
   }
@@ -61,7 +61,7 @@ class SharedCookieManager {
     this.setCookie('accessToken', accessToken, {
       expires: 1, // 1 day
     });
-    
+
     this.setCookie('refreshToken', refreshToken, {
       expires: 7, // 7 days
     });
@@ -93,13 +93,43 @@ class SharedCookieManager {
   getUserProfile(): any | null {
     const profileData = this.getCookie('userProfile');
     if (!profileData) return null;
-    
+
     try {
       return JSON.parse(profileData);
     } catch {
       return null;
     }
   }
+  // Get user ID from stored profile
+  getUserId(): string | null {
+    const profile = this.getUserProfile();
+    
+    // Try different possible user ID fields
+    if (profile) {
+      return profile.id || 
+             profile.userId || 
+             profile.sub || 
+             profile.preferred_username || 
+             profile.username || 
+             null;
+    }
+    
+    return null;
+  }
+
+  // Get current user info (combines all user data)
+  getCurrentUser(): {
+    id: string | null;
+    profile: any | null;
+    tokens: { accessToken?: string; refreshToken?: string };
+  } {
+    return {
+      id: this.getUserId(),
+      profile: this.getUserProfile(),
+      tokens: this.getAuthTokens()
+    };
+  }
+
 }
 
 export const sharedCookies = new SharedCookieManager();

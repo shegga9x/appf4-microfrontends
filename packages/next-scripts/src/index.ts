@@ -18,9 +18,6 @@ export function loadEnv() {
 
     if (!result.error) {
       loadedFile = filename;
-      console.log(`✅ Loaded ENV variables from: ${filename}`);
-      console.log(`- NEXT_PUBLIC_GATEWAY_URL: ${process.env.BACKEND_URL ?? 'Not defined'}`);
-      console.log(`- SERVICE_PATH_MSFEED: ${process.env.SERVICE_PATH_MSFEED ?? 'Not defined'}`);
       break;
     }
   }
@@ -29,3 +26,13 @@ export function loadEnv() {
     console.warn('⚠️ No .env file loaded.');
   }
 }
+
+
+export function generateUUID(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+

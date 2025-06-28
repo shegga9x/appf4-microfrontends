@@ -6,8 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **feedItem** | [**FeedItemDTO**](FeedItemDTO.md) |  | [optional] [default to undefined]
-**userName** | **string** |  | [optional] [default to undefined]
-**userAvatar** | **string** |  | [optional] [default to undefined]
+**redisUserDTO** | [**RedisUserDTO**](RedisUserDTO.md) |  | [optional] [default to undefined]
 **likeCount** | **number** |  | [optional] [default to undefined]
 **commentCount** | **number** |  | [optional] [default to undefined]
 **shareCount** | **number** |  | [optional] [default to undefined]
@@ -19,8 +18,7 @@ import { FeedWithOtherDTO } from './api';
 
 const instance: FeedWithOtherDTO = {
     feedItem,
-    userName,
-    userAvatar,
+    redisUserDTO,
     likeCount,
     commentCount,
     shareCount,

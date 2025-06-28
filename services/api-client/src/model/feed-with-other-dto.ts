@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Ms Feed API
- * Ms Feed API documentation
+ * Ms Commentlike API
+ * Ms Commentlike API documentation
  *
  * The version of the OpenAPI document: 0.0.1
  * Contact: 
@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { FeedItemDTO } from './feed-item-dto';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RedisUserDTO } from './redis-user-dto';
 
 /**
  * 
@@ -31,16 +34,10 @@ export interface FeedWithOtherDTO {
     'feedItem'?: FeedItemDTO;
     /**
      * 
-     * @type {string}
+     * @type {RedisUserDTO}
      * @memberof FeedWithOtherDTO
      */
-    'userName'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FeedWithOtherDTO
-     */
-    'userAvatar'?: string;
+    'redisUserDTO'?: RedisUserDTO;
     /**
      * 
      * @type {number}

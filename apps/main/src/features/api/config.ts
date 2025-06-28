@@ -1,4 +1,4 @@
-import { CommentResourceApi, Configuration, FeedItemResourceApi } from "@repo/api-client";
+import { CommentResourceApi, Configuration, FeedItemResourceApi, LikeResourceApi } from "@repo/api-client";
 import { sharedCookies } from '@repo/shared-cookies';
 
 export const createApiConfig = (servicePath: string): Configuration => {
@@ -24,5 +24,10 @@ export const createFeedApi = () => {
 export const createCommentApi = () => {
   return new CommentResourceApi(
     createApiConfig(process.env.NEXT_PUBLIC_SERVICE_PATH_MSCOMMENTLIKE || "/services/commentlike")
+  );
+};
+export const createLikeApi = () => {
+  return new LikeResourceApi(
+    createApiConfig(process.env.NEXT_PUBLIC_SERVICE_PATH_MSCOMMENTLIKE || "/services/like")
   );
 };
