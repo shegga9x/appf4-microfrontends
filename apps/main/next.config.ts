@@ -30,6 +30,14 @@ const nextConfig: NextConfig = {
           source: '/post/_next/:path+',
           destination: '/_next/:path+',
         },
+        {
+          source: '/post',
+          destination: '/post/feed',
+        },
+        {
+          source: '/',
+          destination: '/feed',
+        },
       ],
     };
   },

@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/post/:path*',
-        destination: `${NEXT_PUBLIC_POST_URL}/post/:path*`,
+        destination: `${NEXT_PUBLIC_POST_URL}/:path*`,
       },
       {
         source: '/sharesphere-static/:path*',

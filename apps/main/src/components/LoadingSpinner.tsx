@@ -5,7 +5,7 @@ interface LoadingSpinnerProps {
 }
 
 export default function LoadingSpinner({ 
-    size = 'large', 
+  size = 'large', 
   color = '#1877f2',
   className = ''
 }: LoadingSpinnerProps) {
@@ -16,28 +16,15 @@ export default function LoadingSpinner({
   };
 
   return (
-    <div className={`loading-spinner ${sizeClasses[size]} ${className}`}>
-      <div className="spinner"></div>
-      
-      <style jsx>{`
-        .loading-spinner {
-          display: inline-block;
-        }
-        
-        .spinner {
-          width: 100%;
-          height: 100%;
-          border: 2px solid #f3f3f3;
-          border-top: 2px solid ${color};
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
+    <div className={`inline-block ${sizeClasses[size]} ${className}`}>
+      <span
+        className="block animate-spin rounded-full border-2 border-gray-200 border-t-2"
+        style={{
+          borderTopColor: color,
+          width: '100%',
+          height: '100%',
+        }}
+      ></span>
     </div>
   );
 }
