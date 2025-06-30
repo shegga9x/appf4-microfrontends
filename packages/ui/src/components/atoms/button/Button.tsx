@@ -44,7 +44,7 @@ const Button: React.FC<IProps> = (props) => {
     <button
       {...rest}
       className={cn(
-        'flex items-center justify-center rounded-md shadow-md transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50',
+        'flex items-center justify-center rounded-md shadow-md transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer',
         block ? 'w-full' : 'inline-block',
         sizeClasses,
         bg ? bg : 'bg-blue-500',

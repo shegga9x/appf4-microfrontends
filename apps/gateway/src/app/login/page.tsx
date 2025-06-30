@@ -1,6 +1,6 @@
 'use client';
 import { Formik, useField, Form } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import * as yup from 'yup';
@@ -36,8 +36,6 @@ function LoginContent() {
   const profile = useAuthStore((state) => state.profile);
   const initialized = useAuthStore((state) => state.initialized);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [isChecking, setIsChecking] = useState(true);
   const [registrationMessage, setRegistrationMessage] = useState('');
 
@@ -57,17 +55,6 @@ function LoginContent() {
     }
   }, [initialized, profile, router, searchParams]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    await login(username, password);
-
-    // Only redirect if login was successful (no error and profile is set)
-    if (!error && useAuthStore.getState().profile) {
-      router.push('/');
-    }
-  };
-
   // Show loading state while checking authentication
   if (isChecking || !initialized) {
     return (
@@ -83,12 +70,10 @@ function LoginContent() {
         {/* Left: Brand/Info */}
         <div className="hidden w-1/2 flex-col justify-center md:flex">
           <h1 className="text-6xl font-extrabold text-blue-600 mb-4 font-sans">
-            facebook
+            AppF4
           </h1>
           <p className="text-2xl text-gray-100 font-normal">
-            Facebook helps you connect and share
-            <br />
-            with the people in your life.
+            Connect with friends and the world around you on AppF4.
           </p>
         </div>
         {/* Right: Login Card */}
@@ -106,7 +91,7 @@ function LoginContent() {
                 name="emailOrPhone"
                 inputSize="large"
                 type="text"
-                placeholder="Email address or phone number"
+                placeholder="Email or phone number"
                 className="bg-neutral-900 text-gray-100 border-neutral-700 placeholder:text-gray-400"
               />
               <FormikTextInput
@@ -116,6 +101,9 @@ function LoginContent() {
                 placeholder="Password"
                 className="bg-neutral-900 text-gray-100 border-neutral-700 placeholder:text-gray-400"
               />
+              {registrationMessage && (
+                <div className="mb-2 text-center text-green-500 text-sm">{registrationMessage}</div>
+              )}
               {error && (
                 <div className="mb-2 text-center text-red-500 text-sm">{error}</div>
               )}
@@ -129,7 +117,7 @@ function LoginContent() {
                 isLoading={loading}
                 disabled={loading}
               >
-                Log in
+                Log In
               </Button>
               <div className="text-center my-3">
                 <a
@@ -145,9 +133,9 @@ function LoginContent() {
                 size="large"
                 block
                 fontSize="text-md"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-md mt-2 transition-colors duration-200 cursor-pointer"
               >
-                <Link href="/register">Create new account</Link>
+                <Link href="/register">Create New Account</Link>
               </Button>
             </Form>
           </Formik>
@@ -155,8 +143,7 @@ function LoginContent() {
       </div>
       <div className="fixed bottom-8 w-full text-center">
         <span className="text-gray-300 text-sm">
-          <span className="font-semibold">Create a Page</span> for a celebrity,
-          brand or business.
+          <span className="font-semibold">Create a Page</span> for a celebrity, brand or business.
         </span>
       </div>
     </div>
@@ -164,7 +151,11 @@ function LoginContent() {
 }
 
 const LoginPage: React.FC = () => {
-  return <LoginContent />;
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-neutral-900 px-4"><div className="loader"></div></div>}>
+      <LoginContent />
+    </Suspense>
+  );
 };
 
 export default LoginPage;
