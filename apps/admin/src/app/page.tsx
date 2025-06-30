@@ -1,6 +1,5 @@
 import { log } from "@repo/logger";
-import { Link } from "@repo/ui/link";
-import { CounterButton } from "@repo/ui/counter-button";
+
 export const metadata = {
   title: "Store | Kitchen Sink",
 };
@@ -14,16 +13,15 @@ export default function Store() {
         Store <br />
         <span>Kitchen Sink</span>
       </h1>
-      <CounterButton />
       <p className="description">
         Built With{" "}
-        <Link href="https://turborepo.com" newTab>
+        <a href="https://turborepo.com" target="_blank" rel="noopener noreferrer">
           Turborepo
-        </Link>
+        </a>
         {" & "}
-        <Link href="https://nextjs.org/" newTab>
+        <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">
           Next.js
-        </Link>
+        </a>
       </p>
     </div>
   );

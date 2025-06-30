@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import type { FeedWithOtherDTO, CommentWithRedisUserDTO } from '@repo/api-client';
-import LoadingSpinner from '../../LoadingSpinner';
+import { LoadingSpinner } from '@repo/ui';
 
 interface IProps {
   post: FeedWithOtherDTO;

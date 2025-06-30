@@ -1,14 +1,16 @@
-interface LoadingSpinnerProps {
+import React from 'react';
+
+export interface LoadingSpinnerProps {
   size?: 'small' | 'medium' | 'large';
   color?: string;
   className?: string;
 }
 
-export default function LoadingSpinner({ 
+const LoadingSpinner = ({ 
   size = 'large', 
   color = '#1877f2',
   className = ''
-}: LoadingSpinnerProps) {
+}: LoadingSpinnerProps) => {
   const sizeClasses = {
     small: 'w-4 h-4',
     medium: 'w-6 h-6', 
@@ -28,3 +30,5 @@ export default function LoadingSpinner({
     </div>
   );
 }
+
+export default LoadingSpinner;

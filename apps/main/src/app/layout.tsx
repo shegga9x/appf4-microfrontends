@@ -1,9 +1,6 @@
 'use client'; // Marks this as a client component (needed for Zustand and useEffect)
 
 import { useEffect } from 'react';
-import Header from '../components/Header';
-import LeftSidebar from '../components/LeftSidebar';
-import RightSidebar from '../components/RightSidebar';
 import { useAuthStore } from '@repo/zustand';
 import '../styles/styles.css';
 

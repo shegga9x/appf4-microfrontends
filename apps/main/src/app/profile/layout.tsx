@@ -1,6 +1,6 @@
+"use client";
 import React, { PropsWithChildren } from 'react';
-import Navbar from '../../components/atoms/navbar';
-import MainContentContainer from '../../components/common';
+import { Navbar, MainContentContainer } from '@repo/ui';
 
 const ProfilePageLayout: React.FC<PropsWithChildren> = (props) => {
   const { children } = props;

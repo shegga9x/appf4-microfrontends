@@ -1,7 +1,6 @@
 import type { ReelDTO, FeedWithOtherDTO, CommentWithRedisUserDTO } from "@repo/api-client";
 import CreatePostBox from '../components/atoms/post/CreatePostBox';
-import Story from '../components/atoms/story';
-import LoadingSpinner from './LoadingSpinner';
+import {Story} from '@repo/ui';
 import PostContainer from '../components/container/PostContainer';
 
 interface MainFeedProps {

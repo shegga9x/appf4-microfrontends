@@ -2,9 +2,19 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "lib": ["dom", "ES2015"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
     "sourceMap": true,
     "types": ["jest", "node"]
   },
-  "include": ["."],
+  "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]
 }

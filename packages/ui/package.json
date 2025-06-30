@@ -1,37 +1,21 @@
 {
   "name": "@repo/ui",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "license": "MIT",
   "sideEffects": false,
   "files": [
-    "dist/**",
-    "dist"
+    "dist/**"
   ],
   "exports": {
-    "./counter-button": {
-      "import": {
-        "types": "./dist/es/counter-button.d.mts",
-        "default": "./dist/es/counter-button.mjs"
-      },
-      "require": {
-        "types": "./dist/cjs/counter-button.d.ts",
-        "default": "./dist/cjs/counter-button.js"
-      }
-    },
-    "./link": {
-      "import": {
-        "types": "./dist/es/link.d.mts",
-        "default": "./dist/es/link.mjs"
-      },
-      "require": {
-        "types": "./dist/cjs/link.d.ts",
-        "default": "./dist/cjs/link.js"
-      }
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
     }
   },
   "scripts": {
-    "build": "bunchee",
+    "build": "bunchee src/components/index.ts --format esm --outDir dist",
     "dev": "bunchee --watch",
     "check-types": "tsc --noEmit",
     "lint": "eslint src/",
@@ -57,5 +41,9 @@
     "@types/react-dom": ">=18",
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "dependencies": {
+    "tailwind-merge": "^3.3.1",
+    "formik": "^2.4.2"
   }
 }

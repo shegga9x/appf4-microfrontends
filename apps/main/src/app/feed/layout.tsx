@@ -1,8 +1,6 @@
+"use client";
 import React, { ReactNode } from 'react';
-import Navbar from '../../components/atoms/navbar';
-import MainContentContainer from '../../components/common';
-import LeftSidebar from '../../components/organisms/newsfeed/LeftSidebar';
-import RightSidebar from '../../components/organisms/newsfeed/RightSidebar';
+import { Navbar, MainContentContainer, RightSidebar } from '@repo/ui';
 
 export default function FeedLayout({ children }: { children: ReactNode }) {
   return (

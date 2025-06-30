@@ -7,7 +7,7 @@ import { useRequireProfile } from "@repo/zustand";
 import { useRouter } from "next/navigation";
 import MainFeed from '../components/MainFeed';
 import { useFeedData } from '../features/hooks/useFeedData';
-import LoadingSpinner from '../components/LoadingSpinner';
+import {LoadingSpinner} from '@repo/ui';
 export default function StorePage() {
   const router = useRouter();
   const { profile, loading } = useRequireProfile(router);
