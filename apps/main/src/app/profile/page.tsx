@@ -1,8 +1,29 @@
-import React, { useState } from 'react';
-// import { TPostView } from '../../types/post';
+"use client";
+import React from 'react';
+import { useUserData } from '../../features/hooks/useUserData';
+import { useRequireProfile } from '@repo/zustand';
+import { useRouter } from 'next/navigation';
 
 const ProfilePage: React.FC = () => {
-  // const [postsView, setPostsView] = useState<TPostView>('listView');
+  const router = useRouter();
+  useRequireProfile(router);
+  const { profile, loading, error } = useUserData();
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-neutral-900">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+  if (error || !profile) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-neutral-900">
+        <div className="text-red-500">Failed to load profile.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-14 min-h-[calc(100%-4rem)]">
       <div className="h-full w-full">
@@ -33,16 +54,18 @@ const ProfilePage: React.FC = () => {
                 <div className="z-10 -mt-8 h-[10.25rem] w-[10.25rem]">
                   <img
                     className="h-full w-full rounded-full border-4 border-blue-500"
-                    src="https://random.imagecdn.app/250/250"
+                    src={
+                      'https://random.imagecdn.app/250/250'
+                    }
                     alt="dp"
                   />
                 </div>
                 <div className="flex-1 flex-col pb-2">
                   <p className="text-[2rem] font-bold text-black dark:text-gray-200">
-                    Saiful Islam Shihab
+                    {profile.username || profile.username || 'User'}
                   </p>
                   <a className="cursor-pointer text-sm font-semibold text-gray-600 hover:underline dark:text-gray-300">
-                    528 friends
+                    {0} friends
                   </a>
                   <div className="flex w-full items-center justify-between">
                     <div className="mt-2 flex items-center">

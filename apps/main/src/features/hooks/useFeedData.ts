@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { fetchFeedItems, updateFeedContent, showComment, addNewComment, toggleLike, checkIfLiked, getCurrentUserId } from '../feed/feedService';
-import { getHardcodedReels, getFallbackReels } from '../reels/reelsService';
-import { getFallbackFeeds } from '../feed/feedService';
+import { fetchFeedItems, updateFeedContent, showComment, addNewComment, toggleLike, checkIfLiked, getCurrentUserId } from '../services/feedService';
+import { getHardcodedReels, getFallbackReels } from '../services/reelsService';
+import { getFallbackFeeds } from '../services/feedService';
 import type {
     FeedWithOtherDTO,
     ReelDTO

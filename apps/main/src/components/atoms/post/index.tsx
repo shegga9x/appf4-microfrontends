@@ -55,22 +55,26 @@ const Post: React.FC<IProps> = (props) => {
     <div className="h-auto w-full rounded-md bg-white shadow dark:bg-neutral-800">
       <div className="flex items-center space-x-2 p-2.5 px-4">
         <div className="h-10 w-10">
-          <img
-            src={`https://picsum.photos/seed/${feedId || Math.random()}/100/100`}
-            className="h-full w-full rounded-full object-cover"
-            alt={user?.username || 'User'}
-          />
+          <a href={`/post/profile?id=${user?.id || ''}`}>
+            <img
+              src={`https://picsum.photos/seed/${feedId || Math.random()}/100/100`}
+              className="h-full w-full rounded-full object-cover"
+              alt={user?.username || 'User'}
+            />
+          </a>
         </div>
         <div className="flex flex-grow flex-col">
           <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-            {user?.username || 'Anonymous'}
+            <a href={`/post/profile?id=${user?.id || ''}`}>
+              {user?.username || 'Anonymous'}
+            </a>
           </p>
           <span className="text-xs font-thin text-gray-400">
             {feedItem?.createdAt ? moment(feedItem.createdAt).fromNow() : ''}
           </span>
         </div>
         <div className="h-8 w-8">
-          <button className="h-full w-full rounded-full text-gray-400 hover:bg-gray-100 focus:outline-none dark:text-gray-500 dark:hover:bg-neutral-700">
+          <button className="h-full w-full rounded-full text-gray-400 hover:bg-gray-100 focus:outline-none dark:text-gray-500 dark:hover:bg-neutral-700 cursor-pointer">
             <i className="fas fa-ellipsis-h"></i>
           </button>
         </div>
@@ -114,35 +118,45 @@ const Post: React.FC<IProps> = (props) => {
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <button className="text-gray-500 dark:text-gray-300" onClick={toggleComments ? () => toggleComments(feedId) : undefined}>
+            <button
+              className="text-gray-500 dark:text-gray-300 hover:cursor-pointer"
+              onClick={toggleComments ? () => toggleComments(feedId) : undefined}
+            >
               {post.commentCount || 0} Comments
             </button>
-            <button className="text-gray-500 dark:text-gray-300">
+            <button
+              className="text-gray-500 dark:text-gray-300 hover:cursor-pointer"
+            >
               {post.shareCount || 0} Shares
             </button>
           </div>
         </div>
         <div className="flex space-x-3 text-sm font-thin text-gray-500">
-          <button
-            className={`flex h-8 flex-1 items-center justify-center space-x-2 rounded-md transition-colors duration-150 
-              hover:bg-blue-100 active:scale-95 focus:bg-blue-200 focus:outline-none 
-              dark:text-gray-300 dark:hover:bg-blue-900 dark:focus:bg-blue-900
-              ${isLiked ? 'text-blue-500 bg-blue-50 dark:bg-blue-900' : ''}`}
-            onClick={handleToggleLike ? () => handleToggleLike(feedId) : undefined}
-            disabled={isLiking}
-            style={{ boxShadow: isLiked ? '0 0 0 2px #1877f2 inset' : undefined }}
-          >
-            <div>
-              <i className="fas fa-thumbs-up"></i>
-            </div>
-            <div>
-              <p className="font-semibold">{isLiked ? 'Liked' : 'Like'}</p>
-            </div>
-          </button>
+          <div className="relative group flex-1 mr-2">
+            {/* Reactions Hover Menu */}
+  
+
+            {/* Add the like button here */}
+            <button
+              className={`flex h-8 w-full items-center justify-center space-x-2 rounded-md transition-colors duration-150 
+                hover:bg-blue-100 active:scale-95 focus:bg-blue-200 focus:outline-none 
+                dark:text-gray-300 dark:hover:bg-blue-900 dark:focus:bg-blue-900
+                ${isLiked ? 'text-blue-500 bg-blue-50 dark:bg-blue-900' : ''} cursor-pointer`}
+              onClick={handleToggleLike ? () => handleToggleLike(feedId) : undefined}
+              disabled={isLiking}
+            >
+              <div>
+                <i className="fas fa-thumbs-up"></i>
+              </div>
+              <div>
+                <p className="font-semibold">{isLiked ? 'Liked' : 'Like'}</p>
+              </div>
+            </button>
+          </div>
           <button
             className="flex h-8 flex-1 items-center justify-center space-x-2 rounded-md transition-colors duration-150 
               hover:bg-gray-100 active:scale-95 focus:bg-gray-200 focus:outline-none 
-              dark:text-gray-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+              dark:text-gray-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 cursor-pointer"
             onClick={toggleComments ? () => toggleComments(feedId) : undefined}
           >
             <div>
@@ -155,7 +169,7 @@ const Post: React.FC<IProps> = (props) => {
           <button
             className="flex h-8 flex-1 items-center justify-center space-x-2 rounded-md transition-colors duration-150 
               hover:bg-gray-100 active:scale-95 focus:bg-gray-200 focus:outline-none 
-              dark:text-gray-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+              dark:text-gray-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 cursor-pointer"
           >
             <div>
               <i className="fas fa-share"></i>
@@ -185,16 +199,22 @@ const Post: React.FC<IProps> = (props) => {
                               <LoadingSpinner size="small" />
                             </div>
                           )}
-                          <img
-                            src={`https://picsum.photos/seed/${commentSeed}/32/32`}
-                            alt={comment.redisUserDTO?.username || 'User'}
-                            className={`h-8 w-8 rounded-full object-cover transition-opacity duration-300 ${isCommentImgLoading ? 'opacity-0' : 'opacity-100'}`}
-                            onLoad={() => handleImgLoad(commentImgKey)}
-                          />
+                          <a href={`/post/profile?id=${comment?.redisUserDTO?.id || ''}`}>
+                            <img
+                              src={`https://picsum.photos/seed/${commentSeed}/32/32`}
+                              alt={comment.redisUserDTO?.username || 'User'}
+                              className={`h-8 w-8 rounded-full object-cover transition-opacity duration-300 ${isCommentImgLoading ? 'opacity-0' : 'opacity-100'}`}
+                              onLoad={() => handleImgLoad(commentImgKey)}
+                            />
+                          </a>
                         </div>
                         <div>
                           <div className="rounded bg-gray-100 px-2 py-1 dark:bg-neutral-700">
-                            <span className="font-semibold">{comment.redisUserDTO?.username || 'Anonymous'}</span>
+                            <span className="font-semibold">
+                              <a href={`/post/profile?id=${comment?.redisUserDTO?.id || ''}`}>
+                                {comment.redisUserDTO?.username || 'Anonymous'}
+                              </a>
+                            </span>
                             <span className="ml-2">{comment.commentDTO?.content || ''}</span>
                           </div>
                           <div className="text-xs text-gray-400">
@@ -235,7 +255,7 @@ const Post: React.FC<IProps> = (props) => {
                   />
                   <button
                     onClick={handleAddComment ? () => handleAddComment(feedId) : undefined}
-                    className="rounded-full bg-blue-500 px-3 py-1 text-white disabled:opacity-50"
+                    className="rounded-full bg-blue-500 px-3 py-1 text-white disabled:opacity-50 cursor-pointer"
                     disabled={!newComment[feedId]?.trim() || isSubmittingComment}
                   >
                     {isSubmittingComment ? 'Posting...' : 'Post'}

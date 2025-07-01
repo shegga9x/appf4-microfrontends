@@ -1,17 +1,12 @@
-"use client";
-import React, { ReactNode } from 'react';
-import { Navbar, MainContentContainer, RightSidebar } from '@repo/ui';
+'use client';
 
-export default function FeedLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex min-h-full w-full flex-col">
-      <Navbar />
-      <MainContentContainer>
-        <div className="flex">
-          <div className="flex-1">{children}</div>
-          <RightSidebar />
-        </div>
-      </MainContentContainer>
-    </div>
-  );
+import { NewsFeedLayout } from '@repo/ui';
+import React from 'react';
+
+export default function FeedLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <NewsFeedLayout>{children}</NewsFeedLayout>;
 }
