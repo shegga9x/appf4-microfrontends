@@ -11,7 +11,7 @@ const NewsFeedLayout: React.FC<PropsWithChildren> = (props) => {
       <Navbar />
       <MainContentContainer>
         <div className="flex">
-          <LeftSidebar />
+          {/* <LeftSidebar /> */}
           <div className="flex-1">{children}</div>
           <RightSidebar />
         </div>

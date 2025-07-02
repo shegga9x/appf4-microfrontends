@@ -1,10 +1,11 @@
 "use client";
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useUserData } from '../../features/hooks/useUserData';
 import { useRequireProfile } from '@repo/zustand';
 import { useRouter } from 'next/navigation';
 
-const ProfilePage: React.FC = () => {
+function ProfileContent() {
+
   const router = useRouter();
   useRequireProfile(router);
   const { profile, loading, error } = useUserData();
@@ -524,5 +525,15 @@ const ProfilePage: React.FC = () => {
     </div>
   );
 };
+
+const ProfilePage: React.FC = () => (
+  <Suspense fallback={
+    <div className="flex min-h-screen items-center justify-center bg-neutral-900">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+    </div>
+  }>
+    <ProfileContent />
+  </Suspense>
+);
 
 export default ProfilePage;
