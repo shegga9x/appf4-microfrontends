@@ -72,9 +72,15 @@ function LoginContent() {
           <h1 className="text-6xl font-extrabold text-blue-600 mb-4 font-sans">
             AppF4
           </h1>
-          <p className="text-2xl text-gray-100 font-normal">
+          <p className="text-2xl text-gray-100 font-light mb-6">
             Connect with friends and the world around you on AppF4.
           </p>
+
+          <div className="bg-gray-800/50 p-4 rounded-lg border-l-4 border-blue-500">
+            <p className="text-gray-100 font-normal m-0">
+              <span className="text-blue-400 font-medium">Demo Account:</span> admin / admin
+            </p>
+          </div>
         </div>
         {/* Right: Login Card */}
         <div className="w-full max-w-sm rounded-xl bg-neutral-800 p-8 shadow-2xl">
